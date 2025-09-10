@@ -400,7 +400,9 @@ document.querySelectorAll('.food-tile').forEach(tile => {
   Made with ❤️ — try clicking the flags and food!
 </footer>
 
+
 ### Hi I'm Anwita 
+
 ## Here's a little about me
 
 Here is where I have lived and my ethnic homeland
@@ -485,10 +487,15 @@ Flags are made using Wikipedia images
 Here is what I did at those places
 
 - 🏫 I lived in San Diego since birth, going to Monterey Elementary School in 4S Ranch
+
 - 🏫 Middle and High School in 4S Ranch (CA), Current Junior at Del Norte Highschool
+
 - 💃I completed my Dance Arangetram in the summer of 2025 after 9 years of dance
+
 - 🎓 Part of the Del Norte Varsity Golf Team 
+
 - 🧫 Part of the DNHS iGEM team and work with the Yeo Lab at UCSD
+
 - 🍵My dream job is to join own a matcha cafe and have a pet samoyed.
 
 <style>
@@ -576,9 +583,13 @@ Here is what I did at those places
 Everything for me, revolves around my friends and family. 
 
 - I am 100% Indian but my dad is from North India and my mom is from South India
+
 - I have an older sister named Aditi. People say we look alike, but no one in my family thinks so. 
+
 - I have 6 cousins and I'm the youngest in my extended family. I'm also the only left handed person in my whole family. 
+
 - My favorite show is Money Heist, but I don't watch a lot of TV. My favorite character is Tigger from Winnie the Pooh
+
 - In my free time, I enjoy listening to music and going to local cafes with my friends!🧋☕ 
 
 <h3>Here's some of my Favorite Music</h3>
