@@ -147,7 +147,7 @@ Gallery of Pics, scroll to the right for more ...
 # Hi, my name is Varada. 
 ## As a conversation starter
 
-Here are some places I have lived.
+Here are some places I am from
 
 <comment> Flags are made using Wikipedia images. Click flags for surprises! </comment>
 
