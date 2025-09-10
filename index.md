@@ -11,8 +11,6 @@ hide: true
 
 Our team!.
 
-| Role         | Name     | Repo Location                       | Stream                | Repo Name |
-|--------------|----------|-------------------------------------|-----------------------|-----------|
 | Scrum Master | Krishna     | github.com/krishvisv/teamstudent           | upstream (OCS fork)   | student   |
 | Scrummer     | Sloane    | github.com/sloanesom/teamstudent            | downstream (fork)     | student   |
 | Scrummer     | Anwita | github.com/anwitabandaru-gif/teamstudent        | downstream (fork)     | student   |
