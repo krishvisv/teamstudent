@@ -405,6 +405,7 @@ document.querySelectorAll('.food-tile').forEach(tile => {
 
 ## Here's a little about me
 
+
 Here is where I have lived and my ethnic homeland
 
 <comment>
@@ -457,7 +458,7 @@ Flags are made using Wikipedia images
 
     // 2. Define a JavaScript object for our http source and our data rows for the Living in the World grid
     var living_in_the_world = [
-        {"img": "https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg", "greeting": "Hey, like-", "description": "California - SUNNY DAYS"},
+        {"img": "https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - SUNNY DAYS"},
         {"img": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg", "greeting": "Namaste", "description": "India - family roots"}
     ];
 
