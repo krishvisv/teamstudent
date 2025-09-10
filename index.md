@@ -1,25 +1,22 @@
 ---
 layout: base
-title: I'm Krishna Visvanath
+title: Team Portfolio
 hide: true
 ---
 <style>
 
-
 </style>
-
 
 ### Me and Team
 
-Hi! My name is Krishna Visvanath 🖤.
+Our team!.
 
-| Role         | Name     | Repo Location                       | Stream                | Repo Name |
-|--------------|----------|-------------------------------------|-----------------------|-----------|
-| Scrum Master | John     | github.com/jm1021/student           | upstream (OCS fork)   | student   |
-| Scrummer     | Torin    | github.com/torin/student            | downstream (fork)     | student   |
-| Scrummer     | Avantika | github.com/avantika/student         | downstream (fork)     | student   |
-| Scrummer     | Aadit    | github.com/aaadit/student           | downstream (fork)     | student   |
-
+| Scrum Master | Krishna     | github.com/krishvisv/teamstudent           | upstream (OCS fork)   | student   |
+| Scrummer     | Sloane    | github.com/sloanesom/teamstudent            | downstream (fork)     | student   |
+| Scrummer     | Anwita | github.com/anwitabandaru-gif/teamstudent        | downstream (fork)     | student   |
+| Scrummer     | Aashika    | github.com/aashika0000/teamstudent           | downstream (fork)     | student   |
+| Scrummer     | Varada | github.com/vvarada2009 | downstream (fork) | student|
+| Scrummer     | Adhav | github.com/ABSelvan | downstream (fork) | student |
 
 ## Links to Learning
 
