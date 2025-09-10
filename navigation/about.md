@@ -144,7 +144,7 @@ Gallery of Pics, scroll to the right for more ...
   <img src="{{site.baseurl}}/images/krishna_images/us_at_citrus.jpg" alt="citrus jr">
 </div>
 
-### Hi, my name is Varada. 
+# Hi, my name is Varada. 
 ## As a conversation starter
 
 Here are some places I have lived.
@@ -401,7 +401,7 @@ document.querySelectorAll('.food-tile').forEach(tile => {
 </footer>
 
 
-### Hi I'm Anwita 
+# Hi I'm Anwita 
 
 ## Here's a little about me
 
