@@ -1,7 +1,7 @@
 ---
 layout: post
 title: About
-permalink: /Anwita_about/
+permalink: /about_Anwita/
 comments: true
 ---
 

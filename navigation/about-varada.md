@@ -1,7 +1,7 @@
 ---
 layout: post
 title: About
-permalink: /Varada_about/
+permalink: /about_Varada/
 comments: true
 ---
 

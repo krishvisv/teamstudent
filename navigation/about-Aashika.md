@@ -1,7 +1,7 @@
 ---
 layout: post
 title: About
-permalink: /Aashika_about/
+permalink: /about_Aashika/
 comments: true
 ---
 
