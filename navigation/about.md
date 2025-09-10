@@ -1,7 +1,7 @@
 ---
 layout: post
 title: About
-permalink: student/about/
+permalink: /about/
 comments: true
 ---
 
