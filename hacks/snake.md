@@ -112,7 +112,6 @@ permalink: /snake/
 
 <script>
     (function(){
-        /* Attributes of Game */
         const canvas = document.getElementById("snake");
         const ctx = canvas.getContext("2d");
 
@@ -238,4 +237,98 @@ permalink: /snake/
                 }
             }
 
-            i
+            if(checkBlock(snake[0].x, snake[0].y, food.x, food.y)){
+                snake[snake.length] = {x: snake[0].x, y: snake[0].y};
+                altScore(++score);
+                addFood();
+            }
+
+            ctx.beginPath();
+            ctx.fillStyle = "royalblue";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for(let i = 0; i < snake.length; i++){
+                drawSnakeDot(snake[i].x, snake[i].y);
+            }
+
+            drawFoodStar(food.x, food.y);
+
+            setTimeout(mainLoop, snake_speed);
+        }
+
+        let newGame = function(){
+            showScreen(SCREEN_SNAKE);
+            screen_snake.focus();
+            score = 0;
+            altScore(score);
+            snake = [];
+            snake.push({x: 0, y: 15});
+            snake_next_dir = 1;
+            addFood();
+            canvas.onkeydown = function(evt){ changeDir(evt.keyCode); }
+            mainLoop();
+        }
+
+        let changeDir = function(key){
+            switch(key) {
+                case 37: if(snake_dir !== 1) snake_next_dir = 3; break;
+                case 38: if(snake_dir !== 2) snake_next_dir = 0; break;
+                case 39: if(snake_dir !== 3) snake_next_dir = 1; break;
+                case 40: if(snake_dir !== 0) snake_next_dir = 2; break;
+            }
+        }
+
+        let drawSnakeDot = function(x, y){
+            ctx.fillStyle = "pink";
+            ctx.fillRect(x * BLOCK, y * BLOCK, BLOCK, BLOCK);
+        }
+
+        // Draw yellow star for food
+        let drawFoodStar = function(x, y){
+            const cx = x * BLOCK + BLOCK/2;
+            const cy = y * BLOCK + BLOCK/2;
+            const spikes = 5;
+            const outerRadius = BLOCK/2;
+            const innerRadius = BLOCK/4;
+            let rot = Math.PI/2*3;
+            let step = Math.PI/spikes;
+
+            ctx.beginPath();
+            ctx.moveTo(cx, cy - outerRadius);
+            for(let i = 0; i < spikes; i++){
+                let x1 = cx + Math.cos(rot) * outerRadius;
+                let y1 = cy + Math.sin(rot) * outerRadius;
+                ctx.lineTo(x1, y1);
+                rot += step;
+
+                let x2 = cx + Math.cos(rot) * innerRadius;
+                let y2 = cy + Math.sin(rot) * innerRadius;
+                ctx.lineTo(x2, y2);
+                rot += step;
+            }
+            ctx.lineTo(cx, cy - outerRadius);
+            ctx.closePath();
+            ctx.fillStyle = "yellow";
+            ctx.fill();
+        }
+
+        let addFood = function(){
+            food.x = Math.floor(Math.random() * ((canvas.width / BLOCK) - 1));
+            food.y = Math.floor(Math.random() * ((canvas.height / BLOCK) - 1));
+            for(let i = 0; i < snake.length; i++){
+                if(checkBlock(food.x, food.y, snake[i].x, snake[i].y)){
+                    addFood();
+                }
+            }
+        }
+
+        let checkBlock = function(x, y, _x, _y){ return (x === _x && y === _y); }
+        let altScore = function(score_val){ ele_score.innerHTML = String(score_val); }
+        let setSnakeSpeed = function(speed_value){ snake_speed = speed_value; }
+        let setWall = function(wall_value){
+            wall = wall_value;
+            if(wall === 0){screen_snake.style.borderColor = "#606060";}
+            if(wall === 1){screen_snake.style.borderColor = "#FFFFFF";}
+        }
+    })();
+</script>
