@@ -1,8 +1,9 @@
 ---
+toc: True
 layout:post
 title: Snake.md Game Blog
-permalink: /snake.md/blog
-comments:true
+permalink: /snakeblog 
+comments:true 
 ---
 This update to the Snake game introduces two main visual changes: the snake is now colored pink, and the food is represented by a yellow star instead of a simple square. The following explains the necessary code modifications and how these effects were achieved.
 
