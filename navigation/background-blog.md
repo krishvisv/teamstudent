@@ -1,10 +1,8 @@
 ---
 layout: post
-title: "Background Hack — Mountains Sunset"
-date: 2025-09-16
-permalink: /sprint/1/background-hack-update
-tags: [background-hack, platformer, assets]
-background: "images/platformer/backgrounds/starwars background.jpeg"
+title: Background Blog
+permalink: /blogs/
+comments: true
 ---
 
 # Background Hack Update
