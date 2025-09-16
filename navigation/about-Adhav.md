@@ -1,27 +1,17 @@
 ---
 layout: post
 title: About
-permalink: /about/
+permalink: /about_Adhav/
 comments: true
 ---
 
-# Hi, my name is Krishna
+## As a conversation Starter
 
-## Here are some of my interests .
-
-
-- Music
-- Painting
-- Sewing
-- Beadwork
-- Fashion
-- Taco Bell. I love taco bell.
-
-<img src="https://upload.wikimedia.org/wikipedia/en/b/b3/Taco_Bell_2016.svg" alt="taco bell logo">
+Here are some places I have lived.
 
 <comment>
-places
-<comment>
+Flags are made using Wikipedia images
+</comment>
 
 <style>
     /* Style looks pretty compact, 
@@ -65,12 +55,15 @@ places
 
 <script>
     // 1. Make a connection to the HTML container defined in the HTML div
-    var container = document.getElementById("grid_container"); // This container connects to the HTML
+    var container = document.getElementById("grid_container"); // This container connects to the HTML div
+
     // 2. Define a JavaScript object for our http source and our data rows for the Living in the World grid
     var http_source = "https://upload.wikimedia.org/wikipedia/commons/";
     var living_in_the_world = [
-        {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - forever"},
-        {"flag": "/4/41/Flag_of_India.svg", "greeting": "Namaste or Namaskaram", "description": "Never lived here but my parents did till 2003"},
+    {"flag": "4/4c/Flag_of_Ohio.svg", "greeting": "Hi", "description": "Ohio - Born & Lived for 2 years"},
+    {"flag": "5/54/Flag_of_Washington.svg", "greeting": "Hello", "description": "Washington - 6 years"},
+    {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - 8 years"},
+        {"flag": "4/41/Flag_of_India.svg", "greeting": "Vannakam", "description": "India - Country of Ethnic Origin"},
     ];
 
     // 3a. Consider how to update style count for size of container
@@ -104,40 +97,19 @@ places
     }
 </script>
 
+### Journey through Life
 
-# Journey through Life
+Here is what I did at those places
 
-How I Got to Where I Am
+-  Born in Cleveland, Ohio, in 2009
+-  Lived in Seattle, Washington for a few years
+-  Moved to San Diego, California, in 2017
+-  Lived here ever since!
 
-- 🏫 Elementary School at Stone Ranch Elementary School
-- 🏫 Middle School at Oak Valley Middle School
-- 🎓 Highschool at Del Norte, finally started to feel confident in myself in highschool
-- 💃 Completed my Arangetram in August of 2024
-- 🎶 Part of Del Norte Band and Marching Band
 
-### Culture, Family, and Fun
 
-The mango is an important memento to me realizing i typed baseur1 and not baseurl and finally getting images to work..
 
-- My friends and music are really important to me
-- One of my favorite bands is a local band called Citrus Jr. I go to a lot of their concerts and I love local shows generally, as well as all music
-- There are photos of my friends from across the states, a lot of whom are from the east coast. I met them at a summer program I did at Georgia Tech and I miss them every day
-- Finding time for the people I love always makes me grateful for the life I live and the people I've met
 
-<comment>
-Gallery of Pics, scroll to the right for more ...
-</comment>
-<div class="image-gallery">
-<img src="{{site.baseurl}}/images/krishna_images/mango_test.jpg" alt="pleaseeeeeeee">
-  <img src="{{site.baseurl}}/images/krishna_images/2025_grad.jpg" alt="2025 grad">
-  <img src="{{site.baseurl}}/images/krishna_images/belmont_park.jpg" alt="belmont park">
-  <img src="{{site.baseurl}}/images/krishna_images/georgia_tech_aquarium.jpg" alt="georgia aquarium">
-  <img src="{{site.baseurl}}/images/krishna_images/hoco.jpg" alt="hoco">
-  <img src="{{site.baseurl}}/images/krishna_images/mcr.jpg" alt="mcr">
-  <img src="{{site.baseurl}}/images/krishna_images/me_and_tanishqa.jpg" alt="driving jk parked">
-  <img src="{{site.baseurl}}/images/krishna_images/us_on_christmas.jpg" alt="christmas">
-  <img src="{{site.baseurl}}/images/krishna_images/prom.jpg" alt="prom">
-  <img src="{{site.baseurl}}/images/krishna_images/us_at_citrus.jpg" alt="citrus jr">
-</div>
+
 
 
