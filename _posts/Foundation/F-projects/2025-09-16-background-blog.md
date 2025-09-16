@@ -5,6 +5,7 @@ title: Background Hack Blog
 permalink: /github/pages/background_changes
 breakcrumbs: true 
 comments: true
+description: "Replaced the original space background with a mountains and sunset image by downloading the file, adding it to the repo under images/platformer/backgrounds/, and updating the front matter to point to it."
 ---
 
 # Background Hack Update
