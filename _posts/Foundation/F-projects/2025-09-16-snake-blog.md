@@ -3,7 +3,7 @@ title: Snake Game Blog
 permalink: /snake-game-blog/
 ---
 
-[https://krishvisv.github.io/teamstudent/snake/](Updated Snake Game)
+[https://krishvisv.github.io/teamstudent/snake](Updated Snake Game)
 
 # Snake Game Update
 
