@@ -2,7 +2,7 @@
 layout: base
 title: Whack-a-Mole
 comments: True
-permalink: /whack_a_mole/
+permalink: /whack-a-mole/
 authors: Ahaan Vaidyanathan, Arnav Mittal, Xavier Thompson, Spencer Lyons, Nikhil Naryan, Sharuya Signh 
 ---
 # Whack-a-Mole– OOP JavaScript Game
