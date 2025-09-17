@@ -128,7 +128,7 @@ Information:
       }
     }
     onHit(game){
-      if(this.type==="normal") game.addScore(10);
+      if(this.type==="normal") game.addScore(10);;
       else if(this.type==="golden") game.addScore(30);
       else if(this.type==="bomb") game.lives--;
       else if(this.type==="blue") {
