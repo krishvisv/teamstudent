@@ -125,7 +125,7 @@ let changeDir = function(key){
 ## ❤️ Multiple Lives
 
 Players now start with **3 lives**, which appear on screen.  
-Colliding with walls or self decreases a life instead of immediately ending the game:
+Colliding with walls or yourself decreases a life instead of immediately ending the game:
 
 ```
 let loseLife = function(){
@@ -182,8 +182,8 @@ Hover effects, font sizes, and colors improve clarity and user experience:
 
 ## 📌 Summary
 
-- ✅ Snake color updated to **pink** with glow.  
-- ✅ Food updated to **yellow star** with glow.  
+- ✅ Snake color updated to **pink** and glow.
+- ✅ Food updated to **yellow star** and glow.
 - ✅ **Speed settings** added (Slow, Normal, Fast).  
 - ✅ **WASD controls** added.  
 - ✅ **Multiple lives** system (3 lives).  
