@@ -6,8 +6,8 @@ permalink: /whack_a_mole/
 authors: Ahaan Vaidyanathan, Arnav Mittal, Xavier Thompson, Spencer Lyons, Nikhil Naryan, Sharuya Signh 
 ---
 # Whack-a-Mole– OOP JavaScript Game
-
-Click the moles or press number keys (1–9) to score.  
+**Hacks done by: Aashika, Anwita, Krishna**
+Click the moles or press number keys (1–16) to score.  
 - Multiple mole types, power-ups, combo system  
 - Score points, lose lives for misses or bombs  
 - Increasing difficulty over time  
@@ -353,7 +353,7 @@ Information:
       // Subtitle
       ctx.font = "22px Arial";
       ctx.fillStyle = "black";
-      ctx.fillText("Click or press 1–9 to hit moles", canvas.width/2, 180);
+      ctx.fillText("Click or press 1–16 to hit moles", canvas.width/2, 180);
 
       // Instructions
       ctx.font = "16px Arial";
