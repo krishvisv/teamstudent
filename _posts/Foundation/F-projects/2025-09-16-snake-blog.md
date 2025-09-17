@@ -5,6 +5,8 @@ permalink: /snake-game-blog/
 
 https://krishvisv.github.io/teamstudent/snake
 
+By: Varada, Sloane, Adhav
+
 # Snake Game Update
 
 This update to the Snake game introduces several visual and gameplay changes:  
