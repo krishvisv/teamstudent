@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD:navigation/snake-blog.md
 title: Snake Game Blog
+=======
+title: Snake Game Hack Blog
+>>>>>>> c0913f49345cd0a6cfb75ce1d5db019ed494e604:_posts/Foundation/F-projects/2025-09-16-snake-blog.md
 permalink: /snake-game-blog/
 ---
 
