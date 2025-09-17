@@ -3,7 +3,7 @@ toc: True
 layout: post
 data: tools
 title: Whack-a-Mole Hack Blog
-description: A Whack-a-Mole game rebuilt with OOP JavaScript — now featuring a 4×4 grid, new mole types, power-ups, scaling difficulty, and high score tracking.
+description: A Whack-a-Mole game rebuilt with OOP JavaScript — now featuring a 4×4 grid, new mole types, power-ups, scaling difficulty, and high score tracking. Done by: Anwita, Aashika, and Krishna
 permalink: /github/pages/whack_a_mole_changes
 breadcrumbs: True
 ---
