@@ -2,7 +2,7 @@
 toc: True
 layout: post
 title: Rock Paper Scissors Hack
-permalink: /github/pages/rock-paper-scissors
+permalink: /github/pages/rock-paper-scissors-changes
 breakcrumbs: true 
 comments: true
 description: "Replaced assets for rock paper scissors and the animated fight background"
