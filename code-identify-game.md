@@ -170,6 +170,29 @@ comments: true
     <button class="option-btn" id="nextLevelBtn" style="font-size:1.1rem; padding:0.8rem 2.2rem;">Go to Next Level</button>
   </div>
 
+  <div id="game-container">
+    <div id="stats-container"></div>
+    <div class="game-container" id="gameContainer" style="display:none;">
+      <div id="progressBarContainer" style="width:100%; margin-bottom:1.2rem;">
+        <div style="font-size:1.05rem; color:#4c4065ff; font-weight:600; margin-bottom:0.3rem;">Progress: <span id="progressText">0 / 15</span></div>
+        <div style="background:#e3e3f7; border-radius:8px; width:100%; height:18px; overflow:hidden;">
+          <div id="progressBar" style="background:linear-gradient(90deg,#9797d4 60%,#4c4065 100%); height:100%; width:0%; border-radius:8px; transition:width 0.3s;"></div>
+        </div>
+      </div>
+      <h2 style="color:#4c4065ff;">Code Identify Game</h2>
+      <div class="code-block" id="codeBlock">Loading...</div>
+      <div class="options-bar" id="optionsBar"></div>
+      <div class="result-message" id="resultMessage"></div>
+      <button class="next-btn" id="nextBtn">Next</button>
+    </div>
+  </div>
+
+  <div class="game-container start-aesthetic" id="levelCompleteScreen" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:220px; background: #515170ff !important;">
+    <h2 id="levelCompleteTitle" style="color: #181828; margin-bottom:1.2rem;">Level Complete!</h2>
+    <p id="levelCompleteMsg" style="font-size:1.15rem; color:#232336; margin-bottom:1.5rem;">You answered 15 questions correctly!<br>Click below to go to the next level.</p>
+    <button class="option-btn" id="nextLevelBtn" style="font-size:1.1rem; padding:0.8rem 2.2rem;">Go to Next Level</button>
+  </div>
+
   </div>
   <script>
     const codeSnippets = [
@@ -308,19 +331,23 @@ comments: true
 
     function checkAnswer(selected) {
       const result = document.getElementById('resultMessage');
-      if (selected === currentSnippet.lang) {
+      const correctLanguage = currentSnippet.lang;
+      if (selected === correctLanguage) {
         result.textContent = 'Correct!';
         result.className = 'result-message correct';
         document.getElementById('nextBtn').classList.add('show');
         correctCount++;
         updateProgressBar();
+        languageStats[correctLanguage].correct++;
         if (correctCount >= 15) {
           setTimeout(showLevelComplete, 500);
         }
       } else {
         result.textContent = 'Try again!';
         result.className = 'result-message incorrect';
+        languageStats[selected].incorrect++;
       }
+      updateStatsDisplay();
     }
 
     function showLevelComplete() {
@@ -446,6 +473,38 @@ comments: true
       }
       showSnippet();
     };
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    // Track correct/incorrect counts per language
+    const languageStats = {};
+    languages.forEach(lang => {
+      languageStats[lang] = { correct: 0, incorrect: 0 };
+    });
+
+    function updateStatsDisplay() {
+      let statsHtml = '<div id="language-stats" style="margin-bottom:1em;">';
+      statsHtml += '<h3>Language Stats</h3>';
+      statsHtml += '<table style="width:100%;text-align:center;border-collapse:collapse;">';
+      statsHtml += '<tr><th>Language</th><th>Correct</th><th>Incorrect</th></tr>';
+      languages.forEach(lang => {
+        statsHtml += `<tr><td>${lang}</td><td>${languageStats[lang].correct}</td><td>${languageStats[lang].incorrect}</td></tr>`;
+      });
+      statsHtml += '</table></div>';
+      document.getElementById('stats-container').innerHTML = statsHtml;
+    }
+
+    function showQuestion() {
+        updateStatsDisplay();
+        currentSnippet = getRandomSnippet();
+        document.getElementById('codeBlock').textContent = currentSnippet.code;
+        document.getElementById('resultMessage').textContent = '';
+        document.getElementById('nextBtn').classList.remove('show');
+        renderOptions();
+    }
+
+    // (removed duplicate checkAnswer)
   </script>
 </body>
 </html>
