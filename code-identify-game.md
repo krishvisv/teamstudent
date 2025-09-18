@@ -51,7 +51,7 @@ comments: true
     .option-btn {
       /* pastel blue buttons */
       background: #9c99ccff;
-      color: #cec9e8ff;
+      color: #eae8f5ff;
       border: none;
       border-radius: 6px;
       padding: 0.7rem 1.5rem;
