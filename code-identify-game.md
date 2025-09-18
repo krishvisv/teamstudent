@@ -13,7 +13,8 @@ comments: true
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: #9797d4ff;
+      /* pastel pink -> pastel blue gradient */
+      background: linear-gradient(135deg, #ffd1dc 0%, #cfe8ff 100%);
       margin: 0;
       padding: 0;
       display: flex;
@@ -49,17 +50,19 @@ comments: true
       margin-bottom: 1rem;
     }
     .option-btn {
-      background: #0078d7;
-      color: #fff;
+      /* pastel blue buttons */
+      background: #9bd0ff;
+      color: #013a63;
       border: none;
       border-radius: 6px;
       padding: 0.7rem 1.5rem;
       font-size: 1rem;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.06s;
     }
     .option-btn:hover {
-      background: #005fa3;
+      background: #74baff;
+      transform: translateY(-1px);
     }
     .result-message {
       text-align: center;
@@ -77,8 +80,9 @@ comments: true
     }
     .next-btn {
       margin-top: 1.2rem;
-      background: #28a745;
-      color: #fff;
+      /* pastel pink next */
+      background: #ffb6c1;
+      color: #3a1f25;
       border: none;
       border-radius: 6px;
       padding: 0.6rem 1.2rem;
@@ -89,9 +93,31 @@ comments: true
     .next-btn.show {
       display: inline-block;
     }
+    /* Level toggle button (floating on the right) */
+    .level-btn {
+      position: fixed;
+      right: 1rem;
+      top: 6rem;
+      background: #ff9fb1; /* pastel pink */
+      color: #3a1f25;
+      border: none;
+      padding: 0.6rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+    .level-btn.active { background: #ff7f95; }
+    .level-btn.level3 {
+      top: 10rem;
+      background: #9bd0ff; /* pastel blue for Level Three */
+      color: #013a63;
+    }
+    .level-btn.level3.active { background: #74baff; }
   </style>
 </head>
 <body>
+  <button id="levelBtn" class="level-btn">Level Two</button>
+  <button id="level3Btn" class="level-btn level3">Level Three</button>
   <div class="game-container">
     <h2>Code Identify Game</h2>
     <div class="code-block" id="codeBlock">Loading...</div>
@@ -169,7 +195,22 @@ comments: true
     const languages = ['CSS', 'Javascript', 'Python', 'Markdown', 'HTML'];
     let currentSnippet = null;
 
+    // levelThree pool: different, harder snippets (no explicit language words)
+    const levelThreeSnippets = [
+      { code: "fetch('/api/data').then(res => res.json()).then(d => console.log(d));", lang: 'Javascript' },
+      { code: "SELECT name, score FROM users WHERE score > 100 ORDER BY score DESC;", lang: 'Python' },
+      { code: "<section><article><h2>Title</h2><p>Content here</p></article></section>", lang: 'HTML' },
+      { code: "@media (min-width: 600px) { .col { display: grid; grid-template-columns: 1fr 2fr; } }", lang: 'CSS' },
+      { code: "- [x] Task done\n- [ ] Task todo\n\nSome **notes** here.", lang: 'Markdown' },
+      { code: "const [a,b] = arr; const result = a.map(x => x*2).filter(Boolean);", lang: 'Javascript' },
+      { code: "def fib(n):\n    a,b=0,1\n    for _ in range(n):\n        a,b=b,a+b\n    return a", lang: 'Python' }
+    ];
+
+    // mode-aware random snippet selector: prefers levelThree if enabled
     function getRandomSnippet() {
+      if (typeof levelThreeMode !== 'undefined' && levelThreeMode) {
+        return levelThreeSnippets[Math.floor(Math.random() * levelThreeSnippets.length)];
+      }
       return codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
     }
 
@@ -206,6 +247,62 @@ comments: true
     }
 
     document.getElementById('nextBtn').onclick = showSnippet;
+  // advancedMode: when true remove explicit language-word hints from displayed snippets
+  let advancedMode = false;
+  let levelThreeMode = false;
+  const levelBtn = document.getElementById('levelBtn');
+  const level3Btn = document.getElementById('level3Btn');
+
+    function sanitizeForAdvanced(code) {
+      // remove occurrences of explicit language names to make identification harder
+      return code.replace(/\b(JavaScript|Javascript|Python|HTML|CSS|Markdown)\b/gi, '').trim();
+    }
+
+    function showSnippetAdvanced() {
+      currentSnippet = getRandomSnippet();
+      let displayCode = currentSnippet.code;
+      // Level Three snippets are selected from a different pool; always sanitize if advancedMode or levelThreeMode
+      if (advancedMode || levelThreeMode) displayCode = sanitizeForAdvanced(displayCode);
+      document.getElementById('codeBlock').textContent = displayCode;
+      document.getElementById('resultMessage').textContent = '';
+      document.getElementById('nextBtn').classList.remove('show');
+      renderOptions();
+    }
+
+    function showSnippet() {
+      // keep backward compatible: prefer advanced-aware function
+      showSnippetAdvanced();
+    }
+
+    levelBtn.addEventListener('click', () => {
+      // toggle Level Two advanced mode; if Level Three is active, ignore Level Two toggles
+      if (levelThreeMode) {
+        // if level three is active, toggle it off and enable Level Two
+        levelThreeMode = false;
+        level3Btn.classList.remove('active');
+        level3Btn.textContent = 'Level Three';
+      }
+      advancedMode = !advancedMode;
+      levelBtn.classList.toggle('active', advancedMode);
+      levelBtn.textContent = advancedMode ? 'Level Two (on)' : 'Level Two';
+      // immediately show a fresh snippet in the selected mode
+      showSnippet();
+    });
+
+    level3Btn.addEventListener('click', () => {
+      // Level Three takes precedence: it switches to a harder snippet pool
+      levelThreeMode = !levelThreeMode;
+      if (levelThreeMode) {
+        // enable advanced sanitization for Level Three
+        advancedMode = true;
+        levelBtn.classList.remove('active');
+        levelBtn.textContent = 'Level Two';
+      }
+      level3Btn.classList.toggle('active', levelThreeMode);
+      level3Btn.textContent = levelThreeMode ? 'Level Three (on)' : 'Level Three';
+      showSnippet();
+    });
+
     window.onload = showSnippet;
   </script>
 </body>
