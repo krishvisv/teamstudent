@@ -4,7 +4,6 @@ title: LxD Game
 permalink: /LxDgame
 comments: true
 ---
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -14,7 +13,7 @@ comments: true
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       /* pastel pink -> pastel blue gradient */
-      background: linear-gradient(135deg, #ffd1dc 0%, #cfe8ff 100%);
+      background: #9797d4ff;
       margin: 0;
       padding: 0;
       display: flex;
@@ -51,8 +50,8 @@ comments: true
     }
     .option-btn {
       /* pastel blue buttons */
-      background: #9bd0ff;
-      color: #013a63;
+      background: #9c99ccff;
+      color: #cec9e8ff;
       border: none;
       border-radius: 6px;
       padding: 0.7rem 1.5rem;
@@ -61,7 +60,7 @@ comments: true
       transition: background 0.2s, transform 0.06s;
     }
     .option-btn:hover {
-      background: #74baff;
+      background: #9c99ccff;
       transform: translateY(-1px);
     }
     .result-message {
@@ -80,50 +79,97 @@ comments: true
     }
     .next-btn {
       margin-top: 1.2rem;
-      /* pastel pink next */
-      background: #ffb6c1;
-      color: #3a1f25;
+      background: #9d5663ff;
+      color: #fff;
       border: none;
-      border-radius: 6px;
-      padding: 0.6rem 1.2rem;
-      font-size: 1rem;
+      border-radius: 8px;
+      padding: 0.85rem 2.2rem;
+      font-size: 1.15rem;
+      font-weight: 700;
       cursor: pointer;
       display: none;
+      opacity: 0;
+      transition: opacity 0.3s, background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 12px rgba(76,64,101,0.10);
     }
     .next-btn.show {
-      display: inline-block;
+      display: inline-block !important;
+      opacity: 1;
+      animation: fadeInNext 0.4s;
+    }
+    .next-btn:hover {
+      background: #b86b7bff;
+      color: #fff;
+      transform: scale(1.06);
+    }
+    @keyframes fadeInNext {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     /* Level toggle button (floating on the right) */
     .level-btn {
       position: fixed;
       right: 1rem;
-      top: 6rem;
-      background: #ff9fb1; /* pastel pink */
-      color: #3a1f25;
+      background: #e3b1d9ff; /* pastel pink */
+      color: #571d2aff;
       border: none;
       padding: 0.6rem 0.9rem;
       border-radius: 6px;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+      z-index: 10;
+      transition: background 0.2s, color 0.2s, transform 0.12s;
     }
-    .level-btn.active { background: #ff7f95; }
+    .level-btn.level2 {
+      top: 6rem;
+    }
     .level-btn.level3 {
-      top: 10rem;
-      background: #9bd0ff; /* pastel blue for Level Three */
-      color: #013a63;
+      top: 8.5rem;
     }
-    .level-btn.level3.active { background: #74baff; }
+    .level-btn.active, .level-btn.level3.active {
+      background: #e3b1d9ff;
+      color: #571d2aff;
+      font-weight: 700;
+      transform: scale(1.06);
+    }
   </style>
 </head>
 <body>
-  <button id="levelBtn" class="level-btn">Level Two</button>
+  <button id="level2Btn" class="level-btn level2">Level Two</button>
   <button id="level3Btn" class="level-btn level3">Level Three</button>
-  <div class="game-container">
-    <h2>Code Identify Game</h2>
+  <div class="game-container start-aesthetic" id="startScreen" style="display:flex; flex-direction:column; align-items:flex-start; gap:1.2rem; background: #515170ff;">
+    <h1 style="font-size:2.1rem; font-weight:900; color:#181828; margin-bottom:0.2rem; letter-spacing:1px; text-shadow:0 2px 12px rgba(76,64,101,0.10);">Welcome to Code Identify!</h1>
+    <ul style="list-style:none; padding:0; margin:0 0 1.2rem 0; color:#232336;">
+      <li style="margin-bottom:0.7rem; font-size:1.13rem; font-weight:500;">• Test your skills by matching code snippets to their language.</li>
+      <li style="margin-bottom:0.7rem; font-size:1.13rem; font-weight:500;">• Each round, a code snippet appears.</li>
+      <li style="margin-bottom:0.7rem; font-size:1.13rem; font-weight:500;">• Choose the correct language from the options.</li>
+      <li style="margin-bottom:0.7rem; font-size:1.13rem; font-weight:500;">• Try to get as many correct as you can!</li>
+    </ul>
+    <button class="option-btn start-btn-aesthetic" id="startBtn" style="font-size:1.18rem; padding:0.95rem 2.5rem; font-weight:700; background: #978ec8ff; color:#fff; border:none; border-radius:10px; box-shadow:0 2px 12px rgba(76,64,101,0.10); transition:background 0.2s,transform 0.15s; align-self:center;">Start Game</button>
+  </div>
+
+  <div class="game-container" id="gameContainer" style="display:none;">
+    <div id="progressBarContainer" style="width:100%; margin-bottom:1.2rem;">
+      <div style="font-size:1.05rem; color:#4c4065ff; font-weight:600; margin-bottom:0.3rem;">Progress: <span id="progressText">0 / 15</span></div>
+      <div style="background:#e3e3f7; border-radius:8px; width:100%; height:18px; overflow:hidden;">
+        <div id="progressBar" style="background:linear-gradient(90deg,#9797d4 60%,#4c4065 100%); height:100%; width:0%; border-radius:8px; transition:width 0.3s;"></div>
+      </div>
+    </div>
+    <h2 style="color:#4c4065ff;">Code Identify Game</h2>
     <div class="code-block" id="codeBlock">Loading...</div>
     <div class="options-bar" id="optionsBar"></div>
     <div class="result-message" id="resultMessage"></div>
     <button class="next-btn" id="nextBtn">Next</button>
+  </div>
+
+  <div class="game-container start-aesthetic" id="levelCompleteScreen" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:220px; background: #515170ff !important;">
+    <h2 id="levelCompleteTitle" style="color: #181828; margin-bottom:1.2rem;">Level Complete!</h2>
+    <p id="levelCompleteMsg" style="font-size:1.15rem; color:#232336; margin-bottom:1.5rem;">You answered 15 questions correctly!<br>Click below to go to the next level.</p>
+    <button class="option-btn" id="nextLevelBtn" style="font-size:1.1rem; padding:0.8rem 2.2rem;">Go to Next Level</button>
+  </div>
+
   </div>
   <script>
     const codeSnippets = [
@@ -195,15 +241,25 @@ comments: true
     const languages = ['CSS', 'Javascript', 'Python', 'Markdown', 'HTML'];
     let currentSnippet = null;
 
-    // levelThree pool: different, harder snippets (no explicit language words)
     const levelThreeSnippets = [
       { code: "fetch('/api/data').then(res => res.json()).then(d => console.log(d));", lang: 'Javascript' },
-      { code: "SELECT name, score FROM users WHERE score > 100 ORDER BY score DESC;", lang: 'Python' },
-      { code: "<section><article><h2>Title</h2><p>Content here</p></article></section>", lang: 'HTML' },
-      { code: "@media (min-width: 600px) { .col { display: grid; grid-template-columns: 1fr 2fr; } }", lang: 'CSS' },
-      { code: "- [x] Task done\n- [ ] Task todo\n\nSome **notes** here.", lang: 'Markdown' },
       { code: "const [a,b] = arr; const result = a.map(x => x*2).filter(Boolean);", lang: 'Javascript' },
-      { code: "def fib(n):\n    a,b=0,1\n    for _ in range(n):\n        a,b=b,a+b\n    return a", lang: 'Python' }
+      { code: "let nums = [1,2,3]; let doubled = nums.reduce((a,b)=>a.concat(b*2),[]);", lang: 'Javascript' },
+      { code: "for (let i=0;i<10;i++){if(i%2===0)console.log(i)}", lang: 'Javascript' },
+      { code: "name, score\nWHERE score > 100\nORDER BY score DESC;", lang: 'Python' },
+      { code: "a,b=0,1\nfor _ in range(n):\n    a,b=b,a+b\nreturn a", lang: 'Python' },
+      { code: "s == s[::-1]", lang: 'Python' },
+      { code: "with open('file.txt') as f:\n    data = f.read()", lang: 'Python' },
+      { code: "<section><article><h2>Title</h2><p>Content here</p></article></section>", lang: 'HTML' },
+      { code: "<form><input type='text' /><button>Go</button></form>", lang: 'HTML' },
+      { code: "<ul>\n  <li>One</li>\n  <li>Two</li>\n</ul>", lang: 'HTML' },
+      { code: "@media (min-width: 600px) { .col { display: grid; grid-template-columns: 1fr 2fr; } }", lang: 'CSS' },
+      { code: ".container { display: flex; flex-wrap: wrap; }", lang: 'CSS' },
+      { code: "#main { padding: 2em; border: 1px solid #ccc; }", lang: 'CSS' },
+      { code: "- [x] Task done\n- [ ] Task todo\n\nSome **notes** here.", lang: 'Markdown' },
+      { code: "1. First\n2. Second\n3. Third", lang: 'Markdown' },
+      { code: "> Blockquote example\n> More text", lang: 'Markdown' },
+      { code: "def foo():\n    pass", lang: 'Markdown' }
     ];
 
     // mode-aware random snippet selector: prefers levelThree if enabled
@@ -234,23 +290,67 @@ comments: true
       });
     }
 
+
+    // Progress tracking
+    let correctCount = 0;
+    let currentLevel = 1; // 1, 2, 3
+
+    function updateProgressBar() {
+      const pct = Math.min(100, Math.round((correctCount/15)*100));
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressText').textContent = `${correctCount} / 15`;
+    }
+
+    function resetProgress() {
+      correctCount = 0;
+      updateProgressBar();
+    }
+
     function checkAnswer(selected) {
       const result = document.getElementById('resultMessage');
       if (selected === currentSnippet.lang) {
         result.textContent = 'Correct!';
         result.className = 'result-message correct';
         document.getElementById('nextBtn').classList.add('show');
+        correctCount++;
+        updateProgressBar();
+        if (correctCount >= 15) {
+          setTimeout(showLevelComplete, 500);
+        }
       } else {
         result.textContent = 'Try again!';
         result.className = 'result-message incorrect';
       }
     }
 
+    function showLevelComplete() {
+      document.getElementById('gameContainer').style.display = 'none';
+      document.getElementById('levelCompleteScreen').style.display = 'flex';
+      let title = 'Level Complete!';
+      let msg = '';
+      let btn = document.getElementById('nextLevelBtn');
+      if (currentLevel === 1) {
+        title = 'Level 1 Complete!';
+        msg = 'You answered 15 questions correctly!<br>Click below to go to Level 2.';
+        btn.textContent = 'Go to Level 2';
+      } else if (currentLevel === 2) {
+        title = 'Level 2 Complete!';
+        msg = 'Great job!<br>Click below to go to Level 3.';
+        btn.textContent = 'Go to Level 3';
+      } else {
+        title = 'Level 3 Complete!';
+        msg = 'You finished all levels!<br>Refresh to play again.';
+        btn.style.display = 'none';
+      }
+      document.getElementById('levelCompleteTitle').textContent = title;
+      document.getElementById('levelCompleteMsg').innerHTML = msg;
+    }
+
     document.getElementById('nextBtn').onclick = showSnippet;
   // advancedMode: when true remove explicit language-word hints from displayed snippets
   let advancedMode = false;
   let levelThreeMode = false;
-  const levelBtn = document.getElementById('levelBtn');
+  const level2Btn = document.getElementById('level2Btn');
   const level3Btn = document.getElementById('level3Btn');
 
     function sanitizeForAdvanced(code) {
@@ -274,7 +374,7 @@ comments: true
       showSnippetAdvanced();
     }
 
-    levelBtn.addEventListener('click', () => {
+    level2Btn.addEventListener('click', () => {
       // toggle Level Two advanced mode; if Level Three is active, ignore Level Two toggles
       if (levelThreeMode) {
         // if level three is active, toggle it off and enable Level Two
@@ -283,8 +383,8 @@ comments: true
         level3Btn.textContent = 'Level Three';
       }
       advancedMode = !advancedMode;
-      levelBtn.classList.toggle('active', advancedMode);
-      levelBtn.textContent = advancedMode ? 'Level Two (on)' : 'Level Two';
+      level2Btn.classList.toggle('active', advancedMode);
+      level2Btn.textContent = advancedMode ? 'Level Two (on)' : 'Level Two';
       // immediately show a fresh snippet in the selected mode
       showSnippet();
     });
@@ -295,15 +395,57 @@ comments: true
       if (levelThreeMode) {
         // enable advanced sanitization for Level Three
         advancedMode = true;
-        levelBtn.classList.remove('active');
-        levelBtn.textContent = 'Level Two';
+        level2Btn.classList.remove('active');
+        level2Btn.textContent = 'Level Two';
       }
       level3Btn.classList.toggle('active', levelThreeMode);
       level3Btn.textContent = levelThreeMode ? 'Level Three (on)' : 'Level Three';
       showSnippet();
     });
 
-    window.onload = showSnippet;
+    // Only show the start screen on load
+    window.onload = function() {
+      document.getElementById('startScreen').style.display = 'flex';
+      document.getElementById('gameContainer').style.display = 'none';
+      document.getElementById('levelCompleteScreen').style.display = 'none';
+      currentLevel = 1;
+      resetProgress();
+    };
+
+    // Start button logic: hide start, show game, start game
+    document.getElementById('startBtn').onclick = function() {
+      document.getElementById('startScreen').style.display = 'none';
+      document.getElementById('gameContainer').style.display = 'block';
+      document.getElementById('levelCompleteScreen').style.display = 'none';
+      currentLevel = 1;
+      resetProgress();
+      showSnippet();
+    };
+
+    // Next level button logic
+    document.getElementById('nextLevelBtn').onclick = function() {
+      document.getElementById('levelCompleteScreen').style.display = 'none';
+      document.getElementById('gameContainer').style.display = 'block';
+      resetProgress();
+      currentLevel++;
+      // Set mode for next level
+      if (currentLevel === 2) {
+        advancedMode = true;
+        level2Btn.classList.add('active');
+        level2Btn.textContent = 'Level Two (on)';
+        levelThreeMode = false;
+        level3Btn.classList.remove('active');
+        level3Btn.textContent = 'Level Three';
+      } else if (currentLevel === 3) {
+        levelThreeMode = true;
+        level3Btn.classList.add('active');
+        level3Btn.textContent = 'Level Three (on)';
+        advancedMode = true;
+        level2Btn.classList.remove('active');
+        level2Btn.textContent = 'Level Two';
+      }
+      showSnippet();
+    };
   </script>
 </body>
 </html>
