@@ -211,54 +211,53 @@ comments: true
     <button class="option-btn" id="nextLevelBtn" style="font-size:1.1rem; padding:0.8rem 2.2rem;">Go to Next Level</button>
   </div>
 
-
- </div>
+  </div>
   <script>
     // Add explanations for each snippet
     const codeSnippets = [
       {
-        code: body {\n  background: #222;\n  color: #fff;\n},
+        code: `body {\n  background: #222;\n  color: #fff;\n}`,
         lang: 'CSS',
         explanation: 'This is a CSS code block that sets the background color to dark and the text color to white for the entire page.'
       },
       // Additional Level 1 beginner snippets (added to increase pool size)
       {
-        code: <p>Hello, world!</p>,
+        code: `<p>Hello, world!</p>`,
         lang: 'HTML',
         explanation: 'Simple HTML paragraph element.'
       },
       {
-        code: # This is a comment in Python\nprint('Hello'),
+        code: `# This is a comment in Python\nprint('Hello')`,
         lang: 'Python',
         explanation: 'A Python comment followed by a print statement.'
       },
       {
-        code: const name = 'Sam';\nconsole.log('Hi ' + name);,
+        code: `const name = 'Sam';\nconsole.log('Hi ' + name);`,
         lang: 'Javascript',
         explanation: 'Declares a JS variable and logs a greeting.'
       },
       {
-        code: - item one\n- item two\n- item three,
+        code: `- item one\n- item two\n- item three`,
         lang: 'Markdown',
         explanation: 'A simple Markdown bulleted list.'
       },
       {
-        code: h1 { font-size: 2em; },
+        code: `h1 { font-size: 2em; }`,
         lang: 'CSS',
         explanation: 'CSS rule setting font size for h1 elements.'
       },
       {
-        code: <a href="/#">Link</a>,
+        code: `<a href="/#">Link</a>`,
         lang: 'HTML',
         explanation: 'An HTML anchor link.'
       },
       {
-        code: for i in range(3):\n    print(i),
+        code: `for i in range(3):\n    print(i)`,
         lang: 'Python',
         explanation: 'Python loop that prints numbers 0 through 2.'
       },
       {
-        code: let total = 0;\nfor (let i=0;i<3;i++) total += i;,
+        code: `let total = 0;\nfor (let i=0;i<3;i++) total += i;`,
         lang: 'Javascript',
         explanation: 'Simple JS loop that accumulates a total.'
       },
@@ -268,72 +267,72 @@ comments: true
         explanation: 'This JavaScript function takes a name as input and returns a greeting string.'
       },
       {
-        code: def add(a, b):\n    return a + b,
+        code: `def add(a, b):\n    return a + b`,
         lang: 'Python',
         explanation: 'This Python function adds two numbers and returns the result.'
       },
       {
-        code: # Welcome to Markdown\n\n- List item 1\n- List item 2,
+        code: `# Welcome to Markdown\n\n- List item 1\n- List item 2`,
         lang: 'Markdown',
         explanation: 'This is a Markdown snippet with a heading and a bulleted list.'
       },
       {
-        code: <h1>Hello, world!</h1>\n<p>This is HTML.</p>,
+        code: `<h1>Hello, world!</h1>\n<p>This is HTML.</p>`,
         lang: 'HTML',
         explanation: 'This HTML snippet displays a heading and a paragraph.'
       },
       {
-        code: console.log('JavaScript is fun!');,
+        code: `console.log('JavaScript is fun!');`,
         lang: 'Javascript',
         explanation: 'This JavaScript code prints a message to the browser console.'
       },
       {
-        code: **Bold text** and *italic text*,
+        code: `**Bold text** and *italic text*`,
         lang: 'Markdown',
         explanation: 'This Markdown snippet shows how to write bold and italic text.'
       },
       {
-        code: for (let i = 0; i < 5; i++) {\n  console.log(i);\n},
+        code: `for (let i = 0; i < 5; i++) {\n  console.log(i);\n}`,
         lang: 'Javascript',
         explanation: 'This JavaScript loop prints numbers 0 to 4 to the console.'
       },
       {
-        code: print('Hello from Python!'),
+        code: `print('Hello from Python!')`,
         lang: 'Python',
         explanation: 'This Python code prints a message to the console.'
       },
       {
-        code: a {\n  color: blue;\n  text-decoration: underline;\n},
+        code: `a {\n  color: blue;\n  text-decoration: underline;\n}`,
         lang: 'CSS',
         explanation: 'This CSS rule styles anchor elements to be blue and underlined.'
       },
       {
-        code: <ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>,
+        code: `<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>`,
         lang: 'HTML',
         explanation: 'This HTML snippet creates an unordered list with two items.'
       },
       {
-        code: <!-- This is a comment in HTML -->,
+        code: `<!-- This is a comment in HTML -->`,
         lang: 'HTML',
         explanation: 'This is how you write a comment in HTML.'
       },
       {
-        code: /* CSS comment */\n.header {\n  font-size: 2em;\n},
+        code: `/* CSS comment */\n.header {\n  font-size: 2em;\n}`,
         lang: 'CSS',
         explanation: 'This CSS snippet includes a comment and a rule that sets the font size of elements with class header.'
       },
       {
-        code: let x = 10;\nlet y = 20;\nlet sum = x + y;,
+        code: `let x = 10;\nlet y = 20;\nlet sum = x + y;`,
         lang: 'Javascript',
         explanation: 'This JavaScript code declares two variables and calculates their sum.'
       },
       {
-        code: ## Subheading in Markdown,
+        code: `## Subheading in Markdown`,
         lang: 'Markdown',
         explanation: 'This Markdown line creates a subheading.'
       },
       {
-        code: if x > 0:\n    print('Positive')\nelse:\n    print('Non-positive'),
+        code: `if x > 0:\n    print('Positive')\nelse:\n    print('Non-positive')`,
         lang: 'Python',
         explanation: 'This Python code checks if x is positive and prints a message accordingly.'
       }
@@ -361,7 +360,6 @@ comments: true
       { code: "> Blockquote example\n> More text", lang: 'Markdown', explanation: 'This Markdown shows a blockquote.' },
       { code: "def foo():\n    pass", lang: 'Markdown', explanation: 'This is a Python function, but labeled Markdown for the game.' }
     ];
-    }
     // mode-aware random snippet selector: prefers levelThree if enabled
     function getRandomSnippet() {
       if (typeof levelThreeMode !== 'undefined' && levelThreeMode) {
