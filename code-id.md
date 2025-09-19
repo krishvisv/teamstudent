@@ -23,7 +23,7 @@ comments: true
       align-items: center;
     }
     .game-container {
-      background: #ddddf3ff;
+      background: #ffffffff;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.08);
       padding: 2rem 2.5rem;
@@ -156,7 +156,7 @@ comments: true
     <div class="game-container" id="gameContainer" style="display:none;">
       <div id="progressBarContainer" style="width:100%; margin-bottom:1.2rem;">
         <div style="font-size:1.05rem; color:#4c4065ff; font-weight:600; margin-bottom:0.3rem;">Progress: <span id="progressText">0 / 15</span></div>
-        <div style="background:#e3e3f7; border-radius:8px; width:100%; height:18px; overflow:hidden;">
+        <div style="background: #c2c2e2ff; border-radius:8px; width:100%; height:18px; overflow:hidden;">
           <div id="progressBar" style="background:linear-gradient(90deg,#9797d4 60%,#4c4065 100%); height:100%; width:0%; border-radius:8px; transition:width 0.3s;"></div>
         </div>
       </div>
