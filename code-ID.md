@@ -398,83 +398,84 @@ comments: true
       correctCount = 0;
       updateProgressBar();
     }
-       function getDetailedExplanation(snippet, selected) {
-  const { lang, code } = snippet;
+ // Replace your getDetailedExplanation function with this improved version:
+function getDetailedExplanation(snippet, selected) {
+  const { lang } = snippet;
   const features = {
     'Python': {
-      what: "Defines a function, uses indentation for code blocks, and keywords like 'def', 'return', and 'print'.",
-      symbols: "Key symbols: 'def', ':', indentation, 'return', 'print'.",
-      why: "Python relies on indentation and keywords for structure, making code readable and concise."
+      what: "Python code often uses indentation and keywords like 'def', 'return', and 'print' for functions and output.",
+      why: "Python relies on indentation and specific keywords for structure and readability."
     },
     'Javascript': {
-      what: "Defines functions with 'function', uses curly braces for blocks, and statements like 'console.log'.",
-      symbols: "Key symbols: 'function', '{ }', 'return', 'console.log'.",
-      why: "Javascript uses curly braces and the 'function' keyword for function definitions and browser scripting."
+      what: "JavaScript uses curly braces for code blocks, and keywords like 'function', 'let', and 'console.log' for scripting.",
+      why: "JavaScript is designed for web scripting and uses curly braces and keywords for structure."
     },
     'CSS': {
-      what: "Styles HTML elements using selectors, curly braces, and property-value pairs.",
-      symbols: "Key symbols: selector, '{ }', ':', ';'.",
-      why: "CSS uses this format to apply styles to HTML elements."
+      what: "CSS uses selectors and curly braces to define styles for HTML elements, with properties and values separated by colons.",
+      why: "CSS is used for styling web pages and follows a selector-property-value format."
     },
     'HTML': {
-      what: "Structures content with tags like <h1>, <p>, <ul>, and uses angle brackets.",
-      symbols: "Key symbols: '<tag>', '</tag>', '<!-- comment -->'.",
-      why: "HTML uses tags to define elements and structure web pages."
+      what: "HTML uses tags in angle brackets to structure content, such as headings, paragraphs, and lists.",
+      why: "HTML is the markup language for web pages, using tags to define elements."
     },
     'Markdown': {
-      what: "Formats text using symbols for headings, lists, bold, and italics.",
-      symbols: "Key symbols: '#', '-', '*', '**', '>' for blockquotes.",
-      why: "Markdown uses simple text-based symbols for easy formatting."
+      what: "Markdown uses simple symbols for formatting, like '#' for headings and '-' for lists.",
+      why: "Markdown is a lightweight markup language for easy text formatting."
     }
   };
 
   // Correct answer explanation
   if (selected === lang) {
-    return `✅ <b>Correct!</b><br>
-      <b>What does this code do?</b> ${snippet.explanation}<br>
-      <b>What part of the code is it?</b> ${features[lang].what}<br>
-      <b>Important symbols:</b> ${features[lang].symbols}<br>
-      <b>Why is it ${lang}?</b> ${features[lang].why}`;
+    return {
+      main: `✅ <b>Correct!</b>`,
+      panel: `<b>What does this code do?</b> ${snippet.explanation}<br>
+      <b>How do you know?</b> ${features[lang].what}<br>
+      <b>Why is it ${lang}?</b> ${features[lang].why}`
+    };
   }
 
-  // Incorrect answer explanation
+  // Incorrect answer explanation (NO giveaway)
   let wrong = '';
   if (features[selected]) {
-    wrong = `You chose <b>${selected}</b>, which typically uses:<br>
-      ${features[selected].symbols}<br>
-      But this code does not use those features.`;
+    wrong = `❌ <b>Incorrect.</b><br>
+      You chose <b>${selected}</b>.<br>
+      ${features[selected].what}<br>
+      <b>Tip:</b> Look for clues in the code's structure and formatting to identify the correct language.`;
   }
-  return `❌ <b>Incorrect.</b><br>
-    ${wrong}<br>
-    <b>Actual language:</b> ${lang}<br>
-    <b>What does this code do?</b> ${snippet.explanation}<br>
-    <b>What part of the code is it?</b> ${features[lang].what}<br>
-    <b>Important symbols:</b> ${features[lang].symbols}<br>
-    <b>Why is it ${lang}?</b> ${features[lang].why}`;
+  return {
+    main: wrong,
+    panel: `<b>Tip:</b> Review the code's structure and formatting. Try to match the style and symbols to the correct language.`
+  };
 }
+
+// Update your checkAnswer function to use the new explanation format:
 function checkAnswer(selected) {
   const result = document.getElementById('resultMessage');
+  const panel = document.getElementById('explanationPanel');
   const correctLanguage = currentSnippet.lang;
-  let explanation = getDetailedExplanation(currentSnippet, selected);
+  let explanationObj = getDetailedExplanation(currentSnippet, selected);
 
-  // Show detailed explanations for all levels
-  result.innerHTML = explanation;
+  // Show main explanation in result message
+  result.innerHTML = explanationObj.main;
   result.className = selected === correctLanguage ? 'result-message correct' : 'result-message incorrect';
+
+  // Show detailed explanation in the panel
+  panel.innerHTML = explanationObj.panel;
+  panel.classList.add('show');
 
   if (selected === correctLanguage) {
     document.getElementById('nextBtn').classList.add('show');
     correctCount++;
     updateProgressBar();
     languageStats[correctLanguage].correct++;
-    showExplanation(currentSnippet.explanation);
     if (correctCount >= 15) {
       setTimeout(showLevelComplete, 500);
     }
   } else {
     languageStats[selected].incorrect++;
-    hideExplanation();
   }
   updateStatsDisplay();
+}
     }
     function showExplanation(text) {
       const panel = document.getElementById('explanationPanel');
