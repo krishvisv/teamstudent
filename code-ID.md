@@ -29,7 +29,41 @@ comments: true
       padding: 2rem 2.5rem;
       margin-top: 2rem;
       min-width: 350px;
-      max-width: 90vw;
+      max-width: 580px;
+      width: 580px;
+      flex: 0 0 580px;
+    }
+    .game-flex-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2.5rem;
+      width: 800px;
+      max-width: 95vw;
+      margin: 0 auto;
+      justify-content: center;
+    }
+    .explanation-panel {
+      min-width: 260px;
+      max-width: 320px;
+      width: 260px;
+      background: #f3f2faff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(76,64,101,0.07);
+      padding: 1.2rem 1.3rem;
+      margin-left: 0.5rem;
+      font-size: 1.05rem;
+      color: #4c4065ff;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+      height: auto;
+      flex: 0 0 260px;
+    }
+    .explanation-panel.show {
+      visibility: visible;
+      opacity: 1;
+      animation: fadeInNext 0.4s;
     }
     .code-block {
       background: #222;
@@ -153,18 +187,21 @@ comments: true
   <div id="game-container">
   <button id="toggleStatsBtn" class="option-btn" style="margin-bottom:0.7em; background:#e3b1d9ff; color:#571d2aff; font-weight:600;">Show Stats</button>
   <div id="stats-container" style="display:none;"></div>
-    <div class="game-container" id="gameContainer" style="display:none;">
-      <div id="progressBarContainer" style="width:100%; margin-bottom:1.2rem;">
-        <div style="font-size:1.05rem; color:#4c4065ff; font-weight:600; margin-bottom:0.3rem;">Progress: <span id="progressText">0 / 15</span></div>
-        <div style="background: #c2c2e2ff; border-radius:8px; width:100%; height:18px; overflow:hidden;">
-          <div id="progressBar" style="background:linear-gradient(90deg,#9797d4 60%,#4c4065 100%); height:100%; width:0%; border-radius:8px; transition:width 0.3s;"></div>
+    <div class="game-flex-row">
+      <div class="game-container" id="gameContainer" style="display:none;">
+        <div id="progressBarContainer" style="width:100%; margin-bottom:1.2rem;">
+          <div style="font-size:1.05rem; color:#4c4065ff; font-weight:600; margin-bottom:0.3rem;">Progress: <span id="progressText">0 / 15</span></div>
+          <div style="background: #c2c2e2ff; border-radius:8px; width:100%; height:18px; overflow:hidden;">
+            <div id="progressBar" style="background:linear-gradient(90deg,#9797d4 60%,#4c4065 100%); height:100%; width:0%; border-radius:8px; transition:width 0.3s;"></div>
+          </div>
         </div>
+        <h2 style="color:#4c4065ff;">Code Identify Game</h2>
+        <div class="code-block" id="codeBlock">Loading...</div>
+        <div class="options-bar" id="optionsBar"></div>
+        <div class="result-message" id="resultMessage"></div>
+        <button class="next-btn" id="nextBtn">Next</button>
       </div>
-      <h2 style="color:#4c4065ff;">Code Identify Game</h2>
-      <div class="code-block" id="codeBlock">Loading...</div>
-      <div class="options-bar" id="optionsBar"></div>
-      <div class="result-message" id="resultMessage"></div>
-      <button class="next-btn" id="nextBtn">Next</button>
+      <div class="explanation-panel" id="explanationPanel"></div>
     </div>
   </div>
 
@@ -176,93 +213,111 @@ comments: true
 
   </div>
   <script>
+    // Add explanations for each snippet
     const codeSnippets = [
       {
         code: `body {\n  background: #222;\n  color: #fff;\n}`,
-        lang: 'CSS'
+        lang: 'CSS',
+        explanation: 'This is a CSS code block that sets the background color to dark and the text color to white for the entire page.'
       },
       {
         code: "function greet(name) {\n  return 'Hello, ' + name + '!';\n}",
-        lang: 'Javascript'
+        lang: 'Javascript',
+        explanation: 'This JavaScript function takes a name as input and returns a greeting string.'
       },
       {
         code: `def add(a, b):\n    return a + b`,
-        lang: 'Python'
+        lang: 'Python',
+        explanation: 'This Python function adds two numbers and returns the result.'
       },
       {
         code: `# Welcome to Markdown\n\n- List item 1\n- List item 2`,
-        lang: 'Markdown'
+        lang: 'Markdown',
+        explanation: 'This is a Markdown snippet with a heading and a bulleted list.'
       },
       {
         code: `<h1>Hello, world!</h1>\n<p>This is HTML.</p>`,
-        lang: 'HTML'
+        lang: 'HTML',
+        explanation: 'This HTML snippet displays a heading and a paragraph.'
       },
       {
         code: `console.log('JavaScript is fun!');`,
-        lang: 'Javascript'
+        lang: 'Javascript',
+        explanation: 'This JavaScript code prints a message to the browser console.'
       },
       {
         code: `**Bold text** and *italic text*`,
-        lang: 'Markdown'
+        lang: 'Markdown',
+        explanation: 'This Markdown snippet shows how to write bold and italic text.'
       },
       {
         code: `for (let i = 0; i < 5; i++) {\n  console.log(i);\n}`,
-        lang: 'Javascript'
+        lang: 'Javascript',
+        explanation: 'This JavaScript loop prints numbers 0 to 4 to the console.'
       },
       {
         code: `print('Hello from Python!')`,
-        lang: 'Python'
+        lang: 'Python',
+        explanation: 'This Python code prints a message to the console.'
       },
       {
         code: `a {\n  color: blue;\n  text-decoration: underline;\n}`,
-        lang: 'CSS'
+        lang: 'CSS',
+        explanation: 'This CSS rule styles all <a> elements to be blue and underlined.'
       },
       {
         code: `<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>`,
-        lang: 'HTML'
+        lang: 'HTML',
+        explanation: 'This HTML snippet creates an unordered list with two items.'
       },
       {
         code: `<!-- This is a comment in HTML -->`,
-        lang: 'HTML'
+        lang: 'HTML',
+        explanation: 'This is how you write a comment in HTML.'
       },
       {
         code: `/* CSS comment */\n.header {\n  font-size: 2em;\n}`,
-        lang: 'CSS'
+        lang: 'CSS',
+        explanation: 'This CSS snippet includes a comment and a rule that sets the font size of elements with class header.'
       },
       {
         code: `let x = 10;\nlet y = 20;\nlet sum = x + y;`,
-        lang: 'Javascript'
+        lang: 'Javascript',
+        explanation: 'This JavaScript code declares two variables and calculates their sum.'
       },
       {
         code: `## Subheading in Markdown`,
-        lang: 'Markdown'
+        lang: 'Markdown',
+        explanation: 'This Markdown line creates a subheading.'
       },
       {
         code: `if x > 0:\n    print('Positive')\nelse:\n    print('Non-positive')`,
-        lang: 'Python'
+        lang: 'Python',
+        explanation: 'This Python code checks if x is positive and prints a message accordingly.'
       }
     ];
     const languages = ['CSS', 'Javascript', 'Python', 'Markdown', 'HTML'];
     let currentSnippet = null;
+    // Add explanations for level three as well
     const levelThreeSnippets = [
-      { code: "fetch('/api/data').then(res => res.json()).then(d => console.log(d));", lang: 'Javascript' },
-      { code: "const [a,b] = arr; const result = a.map(x => x*2).filter(Boolean);", lang: 'Javascript' },
-      { code: "let nums = [1,2,3]; let doubled = nums.reduce((a,b)=>a.concat(b*2),[]);", lang: 'Javascript' },
-      { code: "for (let i=0;i<10;i++){if(i%2===0)console.log(i)}", lang: 'Javascript' },
-      { code: "name, score\nWHERE score > 100\nORDER BY score DESC;", lang: 'Python' },
-      { code: "a,b=0,1\nfor _ in range(n):\n    a,b=b,a+b\nreturn a", lang: 'Python' },
-      { code: "s == s[::-1]", lang: 'Python' },
-      { code: "with open('file.txt') as f:\n    data = f.read()", lang: 'Python' },
-      { code: "<section><article><h2>Title</h2><p>Content here</p></article></section>", lang: 'HTML' },
-      { code: "<form><input type='text' /><button>Go</button></form>", lang: 'HTML' },
-      { code: "<ul>\n  <li>One</li>\n  <li>Two</li>\n</ul>", lang: 'HTML' },
-      { code: "@media (min-width: 600px) { .col { display: grid; grid-template-columns: 1fr 2fr; } }", lang: 'CSS' },
-      { code: ".container { display: flex; flex-wrap: wrap; }", lang: 'CSS' },
-      { code: "#main { padding: 2em; border: 1px solid #ccc; }", lang: 'CSS' },
-      { code: "- [x] Task done\n- [ ] Task todo\n\nSome **notes** here.", lang: 'Markdown' },
-      { code: "1. First\n2. Second\n3. Third", lang: 'Markdown' },
-      { code: "> Blockquote example\n> More text", lang: 'Markdown' },
-      { code: "def foo():\n    pass", lang: 'Markdown' }
+      { code: "fetch('/api/data').then(res => res.json()).then(d => console.log(d));", lang: 'Javascript', explanation: 'This JavaScript code fetches data from an API, parses it as JSON, and logs it.' },
+      { code: "const [a,b] = arr; const result = a.map(x => x*2).filter(Boolean);", lang: 'Javascript', explanation: 'This JavaScript code destructures an array and processes it with map and filter.' },
+      { code: "let nums = [1,2,3]; let doubled = nums.reduce((a,b)=>a.concat(b*2),[]);", lang: 'Javascript', explanation: 'This JavaScript code doubles each number in an array using reduce.' },
+      { code: "for (let i=0;i<10;i++){if(i%2===0)console.log(i)}", lang: 'Javascript', explanation: 'This JavaScript loop prints even numbers from 0 to 9.' },
+      { code: "name, score\nWHERE score > 100\nORDER BY score DESC;", lang: 'Python', explanation: 'This looks like a SQL query, but is labeled Python for the game.' },
+      { code: "a,b=0,1\nfor _ in range(n):\n    a,b=b,a+b\nreturn a", lang: 'Python', explanation: 'This Python code computes the nth Fibonacci number.' },
+      { code: "s == s[::-1]", lang: 'Python', explanation: 'This Python code checks if a string is a palindrome.' },
+      { code: "with open('file.txt') as f:\n    data = f.read()", lang: 'Python', explanation: 'This Python code reads the contents of a file.' },
+      { code: "<section><article><h2>Title</h2><p>Content here</p></article></section>", lang: 'HTML', explanation: 'This HTML snippet uses semantic tags for structure.' },
+      { code: "<form><input type='text' /><button>Go</button></form>", lang: 'HTML', explanation: 'This HTML creates a simple form with a text input and button.' },
+      { code: "<ul>\n  <li>One</li>\n  <li>Two</li>\n</ul>", lang: 'HTML', explanation: 'This HTML creates an unordered list.' },
+      { code: "@media (min-width: 600px) { .col { display: grid; grid-template-columns: 1fr 2fr; } }", lang: 'CSS', explanation: 'This CSS uses a media query to apply grid layout.' },
+      { code: ".container { display: flex; flex-wrap: wrap; }", lang: 'CSS', explanation: 'This CSS makes a flex container that wraps its children.' },
+      { code: "#main { padding: 2em; border: 1px solid #ccc; }", lang: 'CSS', explanation: 'This CSS styles an element with id main.' },
+      { code: "- [x] Task done\n- [ ] Task todo\n\nSome **notes** here.", lang: 'Markdown', explanation: 'This Markdown shows a checklist and bold text.' },
+      { code: "1. First\n2. Second\n3. Third", lang: 'Markdown', explanation: 'This Markdown creates a numbered list.' },
+      { code: "> Blockquote example\n> More text", lang: 'Markdown', explanation: 'This Markdown shows a blockquote.' },
+      { code: "def foo():\n    pass", lang: 'Markdown', explanation: 'This is a Python function, but labeled Markdown for the game.' }
     ];
     // mode-aware random snippet selector: prefers levelThree if enabled
     function getRandomSnippet() {
@@ -276,6 +331,7 @@ comments: true
       document.getElementById('codeBlock').textContent = currentSnippet.code;
       document.getElementById('resultMessage').textContent = '';
       document.getElementById('nextBtn').classList.remove('show');
+      hideExplanation();
       renderOptions();
     }
     function renderOptions() {
@@ -311,6 +367,7 @@ comments: true
         correctCount++;
         updateProgressBar();
         languageStats[correctLanguage].correct++;
+        showExplanation(currentSnippet.explanation);
         if (correctCount >= 15) {
           setTimeout(showLevelComplete, 500);
         }
@@ -318,8 +375,19 @@ comments: true
         result.textContent = 'Try again!';
         result.className = 'result-message incorrect';
         languageStats[selected].incorrect++;
+        hideExplanation();
       }
       updateStatsDisplay();
+    }
+    function showExplanation(text) {
+      const panel = document.getElementById('explanationPanel');
+      panel.textContent = text || '';
+      panel.classList.add('show');
+    }
+    function hideExplanation() {
+      const panel = document.getElementById('explanationPanel');
+      panel.textContent = '';
+      panel.classList.remove('show');
     }
     function showLevelComplete() {
       document.getElementById('gameContainer').style.display = 'none';
@@ -361,6 +429,7 @@ comments: true
       document.getElementById('codeBlock').textContent = displayCode;
       document.getElementById('resultMessage').textContent = '';
       document.getElementById('nextBtn').classList.remove('show');
+      hideExplanation();
       renderOptions();
     }
     function showSnippet() {
