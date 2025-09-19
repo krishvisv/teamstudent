@@ -218,123 +218,123 @@ comments: true
       {
         code: `body {\n  background: #222;\n  color: #fff;\n}`,
         lang: 'CSS',
-        explanation: 'This is a CSS code block that sets the background color to dark and the text color to white for the entire page.'
+        explanation: 'This is a CSS code block that sets the background color to dark and the text color to white for the entire page. It uses selectors (`body`) and curly braces `{}` to apply style rules. The snippet sets the background color of the entire page to a dark gray (`#222`) and the text color to white (`#fff`). The colon `:` separates property names (like background, color) from their values, and the semicolon `;` ends each declaration.'
       },
       // Additional Level 1 beginner snippets (added to increase pool size)
       {
         code: `<p>Hello, world!</p>`,
         lang: 'HTML',
-        explanation: 'Simple HTML paragraph element.'
+        explanation: 'Simple HTML paragraph element. It uses tags wrapped in angle brackets `< >`. The `<p>` and `</p>` tags define a paragraph element. The text "Hello, world!" is placed between the opening and closing tags, which is the standard structure of HTML.'
       },
       {
         code: `# This is a comment in Python\nprint('Hello')`,
         lang: 'Python',
-        explanation: 'A Python comment followed by a print statement.'
+        explanation: 'A Python comment followed by a print statement. It uses the `#` symbol for comments and the built-in `print()` function. The `#` tells the interpreter to ignore that line, while `print()` outputs the string "Hello". Python does not use semicolons or curly braces, which distinguishes it from languages like JavaScript or C.'
       },
       {
         code: `const name = 'Sam';\nconsole.log('Hi ' + name);`,
         lang: 'Javascript',
-        explanation: 'Declares a JS variable and logs a greeting.'
+        explanation: 'Declares a JS variable and logs a greeting. It uses the `const` keyword for declaring a variable, and the `console.log()` function to print to the browser console. The `+` operator concatenates strings. JavaScript syntax requires semicolons (optional but standard) and uses curly braces in larger code blocks.'
       },
       {
         code: `- item one\n- item two\n- item three`,
         lang: 'Markdown',
-        explanation: 'A simple Markdown bulleted list.'
+        explanation: 'A simple Markdown bulleted list. It uses a leading dash `-` to create unordered list items. Markdown syntax is plain text designed for easy formatting into HTML. Unlike HTML, no tags are required — just symbols like `-` or `*` at the start of each line.'
       },
       {
         code: `h1 { font-size: 2em; }`,
         lang: 'CSS',
-        explanation: 'CSS rule setting font size for h1 elements.'
+        explanation: 'CSS rule setting font size for h1 elements. It uses a selector (`h1`) and a declaration block `{}`. The property `font-size` is paired with the value `2em`, which scales text relative to the parent size. This style applies specifically to all `<h1>` elements in an HTML document.'
       },
       {
         code: `<a href="/#">Link</a>`,
         lang: 'HTML',
-        explanation: 'An HTML anchor link.'
+        explanation: 'An HTML anchor link. It uses the `<a>` anchor tag. The `href` attribute specifies the link destination. Opening `<a>` and closing `</a>` tags wrap the text "Link", which is displayed as clickable in a browser.'
       },
       {
         code: `for i in range(3):\n    print(i)`,
         lang: 'Python',
-        explanation: 'Python loop that prints numbers 0 through 2.'
+        explanation: 'Python loop that prints numbers 0 through 2. It uses the `for` loop with the built-in `range()` function and indentation for the block. The loop iterates through numbers 0, 1, 2 and prints them. Python relies on colons `:` to start code blocks and indentation instead of curly braces.'
       },
       {
         code: `let total = 0;\nfor (let i=0;i<3;i++) total += i;`,
         lang: 'Javascript',
-        explanation: 'Simple JS loop that accumulates a total.'
+        explanation: 'Simple JS loop that accumulates a total. It uses the `let` keyword for variable declaration and a C-style `for` loop with parentheses `()` and curly braces `{}`. The code initializes `total` to 0 and accumulates numbers from 0 to 2. The syntax with semicolons and `++` increments is specific to JavaScript (and similar languages).'
       },
       {
         code: "function greet(name) {\n  return 'Hello, ' + name + '!';\n}",
         lang: 'Javascript',
-        explanation: 'This JavaScript function takes a name as input and returns a greeting string.'
+        explanation: 'This JavaScript function takes a name as input and returns a greeting string. It defines a function using the `function` keyword, curly braces `{}`, and the `return` statement. The `+` operator concatenates strings with the variable `name`. Functions like this are fundamental in JavaScript for reusable code.'
       },
       {
         code: `def add(a, b):\n    return a + b`,
         lang: 'Python',
-        explanation: 'This Python function adds two numbers and returns the result.'
+        explanation: 'This Python function adds two numbers and returns the result. It uses the `def` keyword to define a function, a colon `:` to start the block, and indentation to define scope. The `return` statement outputs the sum of `a` and `b`. Python does not require parentheses around blocks, unlike JavaScript.'
       },
       {
         code: `# Welcome to Markdown\n\n- List item 1\n- List item 2`,
         lang: 'Markdown',
-        explanation: 'This is a Markdown snippet with a heading and a bulleted list.'
+        explanation: 'This is a Markdown snippet with a heading and a bulleted list. It starts with `#` for a heading and `-` for bullet points. Markdown uses simple plain-text markers rather than tags or keywords. A single `#` creates a top-level heading, while a dash `-` starts list items.'
       },
       {
         code: `<h1>Hello, world!</h1>\n<p>This is HTML.</p>`,
         lang: 'HTML',
-        explanation: 'This HTML snippet displays a heading and a paragraph.'
+        explanation: 'This HTML snippet displays a heading and a paragraph. Iit uses tags like `<h1>` for a heading and `<p>` for a paragraph. The tags wrap the text, which is how HTML structures content. Opening and closing tags must match, which is part of HTML’s syntax.'
       },
       {
         code: `console.log('JavaScript is fun!');`,
         lang: 'Javascript',
-        explanation: 'This JavaScript code prints a message to the browser console.'
+        explanation: 'This JavaScript code prints a message to the browser console. It uses the `console.log()` function, which is built into browsers for debugging. The string "JavaScript is fun!" is enclosed in quotes and output to the console. The semicolon `;` ends the statement.'
       },
       {
         code: `**Bold text** and *italic text*`,
         lang: 'Markdown',
-        explanation: 'This Markdown snippet shows how to write bold and italic text.'
+        explanation: 'This Markdown snippet shows how to write bold and italic text. It uses double asterisks `**` for bold and single asterisks `*` for italic. Markdown focuses on readable plain text, and these symbols are specifically part of its syntax for styling text.'
       },
       {
         code: `for (let i = 0; i < 5; i++) {\n  console.log(i);\n}`,
         lang: 'Javascript',
-        explanation: 'This JavaScript loop prints numbers 0 to 4 to the console.'
+        explanation: 'This JavaScript loop prints numbers 0 to 4 to the console. It uses the `for` loop with initialization, condition, and increment inside parentheses `()`. The loop body is wrapped in curly braces `{}`. It logs numbers 0 through 4 using `console.log()`. The syntax is JavaScript’s standard loop style.'
       },
       {
         code: `print('Hello from Python!')`,
         lang: 'Python',
-        explanation: 'This Python code prints a message to the console.'
+        explanation: 'This Python code prints a message to the console. It uses the built-in `print()` function with parentheses and no semicolon. The string is in quotes and is printed directly to the console. The absence of extra syntax like braces or semicolons marks it as Python.'
       },
       {
         code: `a {\n  color: blue;\n  text-decoration: underline;\n}`,
         lang: 'CSS',
-        explanation: 'This CSS rule styles anchor elements to be blue and underlined.'
+        explanation: 'This CSS rule styles anchor elements to be blue and underlined. It uses a selector (`a`) to target anchor elements and style them with properties inside `{}`. The `color` property sets text to blue, and `text-decoration: underline;` ensures links are underlined. The colon `:` separates property from value.'
       },
       {
         code: `<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>`,
         lang: 'HTML',
-        explanation: 'This HTML snippet creates an unordered list with two items.'
+        explanation: 'This HTML snippet creates an unordered list with two items. It uses `<ul>` tags for an unordered list and `<li>` tags for list items. The nested structure with opening and closing tags is the hallmark of HTML document structure.'
       },
       {
         code: `<!-- This is a comment in HTML -->`,
         lang: 'HTML',
-        explanation: 'This is how you write a comment in HTML.'
+        explanation: 'This is how you write a comment in HTML. It uses the `<!-- ... -->` syntax for comments. Anything inside is ignored by the browser. This style of comment is unique to HTML and not used in languages like Python or CSS.'
       },
       {
         code: `/* CSS comment */\n.header {\n  font-size: 2em;\n}`,
         lang: 'CSS',
-        explanation: 'This CSS snippet includes a comment and a rule that sets the font size of elements with class header.'
+        explanation: 'This CSS snippet includes a comment and a rule that sets the font size of elements with class header. It includes a `/* ... */` comment and a rule targeting the `.header` class. The `font-size: 2em;` sets text size relative to the base font. CSS uses class selectors with a dot `.` to apply styles to elements with that class.'
       },
       {
         code: `let x = 10;\nlet y = 20;\nlet sum = x + y;`,
         lang: 'Javascript',
-        explanation: 'This JavaScript code declares two variables and calculates their sum.'
+        explanation: 'This JavaScript code declares two variables and calculates their sum. t uses the `let` keyword for variable declarations, semicolons `;` to end statements, and the `+` operator to add values. JavaScript syntax requires these features and is executed in browsers or Node.js.'
       },
       {
         code: `## Subheading in Markdown`,
         lang: 'Markdown',
-        explanation: 'This Markdown line creates a subheading.'
+        explanation: 'This Markdown line creates a subheading. It uses two hash symbols `##` at the start of a line to create a subheading. Markdown headings use `#` symbols instead of tags, unlike HTML’s `<h2>` tag.'
       },
       {
         code: `if x > 0:\n    print('Positive')\nelse:\n    print('Non-positive')`,
         lang: 'Python',
-        explanation: 'This Python code checks if x is positive and prints a message accordingly.'
+        explanation: 'This Python code checks if x is positive and prints a message accordingly. It uses the `if` and `else` keywords with a colon `:` to define conditional blocks. Indentation controls scope instead of braces. The `print()` function outputs whether `x` is positive or not, showing Python’s clean, readable style.'
       }
     ];
     const languages = ['CSS', 'Javascript', 'Python', 'Markdown', 'HTML'];
