@@ -423,7 +423,6 @@ function getDetailedExplanation(snippet, selected) {
       why: "Markdown is a lightweight markup language for easy text formatting."
     }
   };
-
   // Correct answer explanation
   if (selected === lang) {
     return {
@@ -433,7 +432,6 @@ function getDetailedExplanation(snippet, selected) {
       <b>Why is it ${lang}?</b> ${features[lang].why}`
     };
   }
-
   // Incorrect answer explanation (NO giveaway)
   let wrong = '';
   if (features[selected]) {
@@ -447,7 +445,6 @@ function getDetailedExplanation(snippet, selected) {
     panel: `<b>Tip:</b> Review the code's structure and formatting. Try to match the style and symbols to the correct language.`
   };
 }
-
 // Update your checkAnswer function to use the new explanation format:
 function checkAnswer(selected) {
   const result = document.getElementById('resultMessage');
