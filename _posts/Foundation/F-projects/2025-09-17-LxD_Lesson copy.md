@@ -141,15 +141,15 @@ Even the table above was made with Markdown:
 
 ---
 
-## 🤝 Peer Review and Iteration  
+## 🤝 Peer Review  
 Through peer review, we received feedback to:  
 - Add **levels** with more challenging answer choices.  
-- Include a **progress bar** and **leaderboard**.  
-- Add a **start menu**.  
+- Include a **progress bar** and **leaderboard** in our game  
+- Add a **start menu** page.
 
 We revised our game by:  
-- Creating **2 extra difficulty levels**.  
-- Designing a **progress bar** that advances every 15 correct answers.  
+- Creating **2 extra difficulty levels** (level 2 and level 3).
+- Designing a **progress bar** that advances every time an answer is correct. 
 - Using a **scoreboard** instead of a leaderboard.  
 - Adding a **start menu** and **end-of-level menu**.  
 
