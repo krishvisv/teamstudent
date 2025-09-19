@@ -220,6 +220,47 @@ comments: true
         lang: 'CSS',
         explanation: 'This is a CSS code block that sets the background color to dark and the text color to white for the entire page.'
       },
+      // Additional Level 1 beginner snippets (added to increase pool size)
+      {
+        code: `<p>Hello, world!</p>`,
+        lang: 'HTML',
+        explanation: 'Simple HTML paragraph element.'
+      },
+      {
+        code: `# This is a comment in Python\nprint('Hello')`,
+        lang: 'Python',
+        explanation: 'A Python comment followed by a print statement.'
+      },
+      {
+        code: `const name = 'Sam';\nconsole.log('Hi ' + name);`,
+        lang: 'Javascript',
+        explanation: 'Declares a JS variable and logs a greeting.'
+      },
+      {
+        code: `- item one\n- item two\n- item three`,
+        lang: 'Markdown',
+        explanation: 'A simple Markdown bulleted list.'
+      },
+      {
+        code: `h1 { font-size: 2em; }`,
+        lang: 'CSS',
+        explanation: 'CSS rule setting font size for h1 elements.'
+      },
+      {
+        code: `<a href="/#">Link</a>`,
+        lang: 'HTML',
+        explanation: 'An HTML anchor link.'
+      },
+      {
+        code: `for i in range(3):\n    print(i)`,
+        lang: 'Python',
+        explanation: 'Python loop that prints numbers 0 through 2.'
+      },
+      {
+        code: `let total = 0;\nfor (let i=0;i<3;i++) total += i;`,
+        lang: 'Javascript',
+        explanation: 'Simple JS loop that accumulates a total.'
+      },
       {
         code: "function greet(name) {\n  return 'Hello, ' + name + '!';\n}",
         lang: 'Javascript',
@@ -263,7 +304,7 @@ comments: true
       {
         code: `a {\n  color: blue;\n  text-decoration: underline;\n}`,
         lang: 'CSS',
-        explanation: 'This CSS rule styles all <a> elements to be blue and underlined.'
+        explanation: 'This CSS rule styles anchor elements to be blue and underlined.'
       },
       {
         code: `<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>`,
