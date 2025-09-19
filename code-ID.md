@@ -398,81 +398,27 @@ comments: true
       correctCount = 0;
       updateProgressBar();
     }
- // Replace your getDetailedExplanation function with this improved version:
-function getDetailedExplanation(snippet, selected) {
-  const { lang } = snippet;
-  const features = {
-    'Python': {
-      what: "Python code often uses indentation and keywords like 'def', 'return', and 'print' for functions and output.",
-      why: "Python relies on indentation and specific keywords for structure and readability."
-    },
-    'Javascript': {
-      what: "JavaScript uses curly braces for code blocks, and keywords like 'function', 'let', and 'console.log' for scripting.",
-      why: "JavaScript is designed for web scripting and uses curly braces and keywords for structure."
-    },
-    'CSS': {
-      what: "CSS uses selectors and curly braces to define styles for HTML elements, with properties and values separated by colons.",
-      why: "CSS is used for styling web pages and follows a selector-property-value format."
-    },
-    'HTML': {
-      what: "HTML uses tags in angle brackets to structure content, such as headings, paragraphs, and lists.",
-      why: "HTML is the markup language for web pages, using tags to define elements."
-    },
-    'Markdown': {
-      what: "Markdown uses simple symbols for formatting, like '#' for headings and '-' for lists.",
-      why: "Markdown is a lightweight markup language for easy text formatting."
-    }
-  };
-  // Correct answer explanation
-  if (selected === lang) {
-    return {
-      main: `✅ <b>Correct!</b>`,
-      panel: `<b>What does this code do?</b> ${snippet.explanation}<br>
-      <b>How do you know?</b> ${features[lang].what}<br>
-      <b>Why is it ${lang}?</b> ${features[lang].why}`
-    };
-  }
-  // Incorrect answer explanation (NO giveaway)
-  let wrong = '';
-  if (features[selected]) {
-    wrong = `❌ <b>Incorrect.</b><br>
-      You chose <b>${selected}</b>.<br>
-      ${features[selected].what}<br>
-      <b>Tip:</b> Look for clues in the code's structure and formatting to identify the correct language.`;
-  }
-  return {
-    main: wrong,
-    panel: `<b>Tip:</b> Review the code's structure and formatting. Try to match the style and symbols to the correct language.`
-  };
-}
-// Update your checkAnswer function to use the new explanation format:
-function checkAnswer(selected) {
-  const result = document.getElementById('resultMessage');
-  const panel = document.getElementById('explanationPanel');
-  const correctLanguage = currentSnippet.lang;
-  let explanationObj = getDetailedExplanation(currentSnippet, selected);
-
-  // Show main explanation in result message
-  result.innerHTML = explanationObj.main;
-  result.className = selected === correctLanguage ? 'result-message correct' : 'result-message incorrect';
-
-  // Show detailed explanation in the panel
-  panel.innerHTML = explanationObj.panel;
-  panel.classList.add('show');
-
-  if (selected === correctLanguage) {
-    document.getElementById('nextBtn').classList.add('show');
-    correctCount++;
-    updateProgressBar();
-    languageStats[correctLanguage].correct++;
-    if (correctCount >= 15) {
-      setTimeout(showLevelComplete, 500);
-    }
-  } else {
-    languageStats[selected].incorrect++;
-  }
-  updateStatsDisplay();
-}
+    function checkAnswer(selected) {
+      const result = document.getElementById('resultMessage');
+      const correctLanguage = currentSnippet.lang;
+      if (selected === correctLanguage) {
+        result.textContent = 'Correct!';
+        result.className = 'result-message correct';
+        document.getElementById('nextBtn').classList.add('show');
+        correctCount++;
+        updateProgressBar();
+        languageStats[correctLanguage].correct++;
+        showExplanation(currentSnippet.explanation);
+        if (correctCount >= 15) {
+          setTimeout(showLevelComplete, 500);
+        }
+      } else {
+        result.textContent = 'Try again!';
+        result.className = 'result-message incorrect';
+        languageStats[selected].incorrect++;
+        hideExplanation();
+      }
+      updateStatsDisplay();
     }
     function showExplanation(text) {
       const panel = document.getElementById('explanationPanel');
