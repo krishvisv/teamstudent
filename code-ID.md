@@ -398,27 +398,83 @@ comments: true
       correctCount = 0;
       updateProgressBar();
     }
-    function checkAnswer(selected) {
-      const result = document.getElementById('resultMessage');
-      const correctLanguage = currentSnippet.lang;
-      if (selected === correctLanguage) {
-        result.textContent = 'Correct!';
-        result.className = 'result-message correct';
-        document.getElementById('nextBtn').classList.add('show');
-        correctCount++;
-        updateProgressBar();
-        languageStats[correctLanguage].correct++;
-        showExplanation(currentSnippet.explanation);
-        if (correctCount >= 15) {
-          setTimeout(showLevelComplete, 500);
-        }
-      } else {
-        result.textContent = 'Try again!';
-        result.className = 'result-message incorrect';
-        languageStats[selected].incorrect++;
-        hideExplanation();
-      }
-      updateStatsDisplay();
+       function getDetailedExplanation(snippet, selected) {
+  const { lang, code } = snippet;
+  const features = {
+    'Python': {
+      what: "Defines a function, uses indentation for code blocks, and keywords like 'def', 'return', and 'print'.",
+      symbols: "Key symbols: 'def', ':', indentation, 'return', 'print'.",
+      why: "Python relies on indentation and keywords for structure, making code readable and concise."
+    },
+    'Javascript': {
+      what: "Defines functions with 'function', uses curly braces for blocks, and statements like 'console.log'.",
+      symbols: "Key symbols: 'function', '{ }', 'return', 'console.log'.",
+      why: "Javascript uses curly braces and the 'function' keyword for function definitions and browser scripting."
+    },
+    'CSS': {
+      what: "Styles HTML elements using selectors, curly braces, and property-value pairs.",
+      symbols: "Key symbols: selector, '{ }', ':', ';'.",
+      why: "CSS uses this format to apply styles to HTML elements."
+    },
+    'HTML': {
+      what: "Structures content with tags like <h1>, <p>, <ul>, and uses angle brackets.",
+      symbols: "Key symbols: '<tag>', '</tag>', '<!-- comment -->'.",
+      why: "HTML uses tags to define elements and structure web pages."
+    },
+    'Markdown': {
+      what: "Formats text using symbols for headings, lists, bold, and italics.",
+      symbols: "Key symbols: '#', '-', '*', '**', '>' for blockquotes.",
+      why: "Markdown uses simple text-based symbols for easy formatting."
+    }
+  };
+
+  // Correct answer explanation
+  if (selected === lang) {
+    return `✅ <b>Correct!</b><br>
+      <b>What does this code do?</b> ${snippet.explanation}<br>
+      <b>What part of the code is it?</b> ${features[lang].what}<br>
+      <b>Important symbols:</b> ${features[lang].symbols}<br>
+      <b>Why is it ${lang}?</b> ${features[lang].why}`;
+  }
+
+  // Incorrect answer explanation
+  let wrong = '';
+  if (features[selected]) {
+    wrong = `You chose <b>${selected}</b>, which typically uses:<br>
+      ${features[selected].symbols}<br>
+      But this code does not use those features.`;
+  }
+  return `❌ <b>Incorrect.</b><br>
+    ${wrong}<br>
+    <b>Actual language:</b> ${lang}<br>
+    <b>What does this code do?</b> ${snippet.explanation}<br>
+    <b>What part of the code is it?</b> ${features[lang].what}<br>
+    <b>Important symbols:</b> ${features[lang].symbols}<br>
+    <b>Why is it ${lang}?</b> ${features[lang].why}`;
+}
+function checkAnswer(selected) {
+  const result = document.getElementById('resultMessage');
+  const correctLanguage = currentSnippet.lang;
+  let explanation = getDetailedExplanation(currentSnippet, selected);
+
+  // Show detailed explanations for all levels
+  result.innerHTML = explanation;
+  result.className = selected === correctLanguage ? 'result-message correct' : 'result-message incorrect';
+
+  if (selected === correctLanguage) {
+    document.getElementById('nextBtn').classList.add('show');
+    correctCount++;
+    updateProgressBar();
+    languageStats[correctLanguage].correct++;
+    showExplanation(currentSnippet.explanation);
+    if (correctCount >= 15) {
+      setTimeout(showLevelComplete, 500);
+    }
+  } else {
+    languageStats[selected].incorrect++;
+    hideExplanation();
+  }
+  updateStatsDisplay();
     }
     function showExplanation(text) {
       const panel = document.getElementById('explanationPanel');
