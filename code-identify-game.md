@@ -378,11 +378,26 @@ comments: true
       }
     ];
 
+    // Level One: simple, unambiguous snippets for beginners
+    const levelOneSnippets = [
+      { code: "<p>Hello</p>", lang: 'HTML', explanationCorrect: "Simple HTML paragraph tag <p> — basic HTML markup.", explanationWrong: "Not JS/CSS/Python/Markdown: angle-bracket tags identify HTML." },
+      { code: "print('Hello')", lang: 'Python', explanationCorrect: "print() is the Python function to output text.", explanationWrong: "Not JS/HTML/CSS/Markdown: JS uses console.log; HTML is markup." },
+      { code: "console.log('Hi')", lang: 'Javascript', explanationCorrect: "console.log is used in JavaScript to print to the console.", explanationWrong: "Not Python/HTML/CSS/Markdown: Python uses print(), HTML uses tags." },
+      { code: "body { color: red; }", lang: 'CSS', explanationCorrect: "CSS property declarations inside a selector are CSS syntax.", explanationWrong: "Not HTML/JS/Python/Markdown: this is styling syntax for selectors and properties." },
+      { code: "**bold**", lang: 'Markdown', explanationCorrect: "Double asterisks denote bold text in Markdown.", explanationWrong: "Not HTML/CSS/JS/Python: this is Markdown formatting." }
+    ];
+
     // mode-aware random snippet selector: prefers levelThree if enabled
     function getRandomSnippet() {
+      // If Level Three mode is active, pick from levelThree pool
       if (typeof levelThreeMode !== 'undefined' && levelThreeMode) {
         return levelThreeSnippets[Math.floor(Math.random() * levelThreeSnippets.length)];
       }
+      // If we're currently on Level 1, prefer the levelOneSnippets pool (beginner-friendly)
+      if (typeof currentLevel !== 'undefined' && currentLevel === 1) {
+        return levelOneSnippets[Math.floor(Math.random() * levelOneSnippets.length)];
+      }
+      // Default pool
       return codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
     }
 
