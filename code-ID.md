@@ -544,7 +544,7 @@ comments: true
         document.getElementById('nextBtn').classList.remove('show');
         renderOptions();
     }
-    // (removed duplicate checkAnswer)
+    // (removed duplicate checkAnswer) 
   </script>
 </body>
 </html>
