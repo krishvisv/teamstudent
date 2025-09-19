@@ -150,28 +150,9 @@ comments: true
     <button class="option-btn start-btn-aesthetic" id="startBtn" style="font-size:1.18rem; padding:0.95rem 2.5rem; font-weight:700; background: #978ec8ff; color:#fff; border:none; border-radius:10px; box-shadow:0 2px 12px rgba(76,64,101,0.10); transition:background 0.2s,transform 0.15s; align-self:center;">Start Game</button>
   </div>
 
-  <div class="game-container" id="gameContainer" style="display:none;">
-    <div id="progressBarContainer" style="width:100%; margin-bottom:1.2rem;">
-      <div style="font-size:1.05rem; color:#4c4065ff; font-weight:600; margin-bottom:0.3rem;">Progress: <span id="progressText">0 / 15</span></div>
-      <div style="background:#e3e3f7; border-radius:8px; width:100%; height:18px; overflow:hidden;">
-        <div id="progressBar" style="background:linear-gradient(90deg,#9797d4 60%,#4c4065 100%); height:100%; width:0%; border-radius:8px; transition:width 0.3s;"></div>
-      </div>
-    </div>
-    <h2 style="color:#4c4065ff;">Code Identify Game</h2>
-    <div class="code-block" id="codeBlock">Loading...</div>
-    <div class="options-bar" id="optionsBar"></div>
-    <div class="result-message" id="resultMessage"></div>
-    <button class="next-btn" id="nextBtn">Next</button>
-  </div>
-
-  <div class="game-container start-aesthetic" id="levelCompleteScreen" style="display:none; flex-direction:column; align-items:center; justify-content:center; min-height:220px; background: #515170ff !important;">
-    <h2 id="levelCompleteTitle" style="color: #181828; margin-bottom:1.2rem;">Level Complete!</h2>
-    <p id="levelCompleteMsg" style="font-size:1.15rem; color:#232336; margin-bottom:1.5rem;">You answered 15 questions correctly!<br>Click below to go to the next level.</p>
-    <button class="option-btn" id="nextLevelBtn" style="font-size:1.1rem; padding:0.8rem 2.2rem;">Go to Next Level</button>
-  </div>
-
   <div id="game-container">
-    <div id="stats-container"></div>
+  <button id="toggleStatsBtn" class="option-btn" style="margin-bottom:0.7em; background:#e3b1d9ff; color:#571d2aff; font-weight:600;">Show Stats</button>
+  <div id="stats-container" style="display:none;"></div>
     <div class="game-container" id="gameContainer" style="display:none;">
       <div id="progressBarContainer" style="width:100%; margin-bottom:1.2rem;">
         <div style="font-size:1.05rem; color:#4c4065ff; font-weight:600; margin-bottom:0.3rem;">Progress: <span id="progressText">0 / 15</span></div>
@@ -263,7 +244,6 @@ comments: true
     ];
     const languages = ['CSS', 'Javascript', 'Python', 'Markdown', 'HTML'];
     let currentSnippet = null;
-
     const levelThreeSnippets = [
       { code: "fetch('/api/data').then(res => res.json()).then(d => console.log(d));", lang: 'Javascript' },
       { code: "const [a,b] = arr; const result = a.map(x => x*2).filter(Boolean);", lang: 'Javascript' },
@@ -284,7 +264,6 @@ comments: true
       { code: "> Blockquote example\n> More text", lang: 'Markdown' },
       { code: "def foo():\n    pass", lang: 'Markdown' }
     ];
-
     // mode-aware random snippet selector: prefers levelThree if enabled
     function getRandomSnippet() {
       if (typeof levelThreeMode !== 'undefined' && levelThreeMode) {
@@ -292,7 +271,6 @@ comments: true
       }
       return codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
     }
-
     function showSnippet() {
       currentSnippet = getRandomSnippet();
       document.getElementById('codeBlock').textContent = currentSnippet.code;
@@ -300,7 +278,6 @@ comments: true
       document.getElementById('nextBtn').classList.remove('show');
       renderOptions();
     }
-
     function renderOptions() {
       const optionsBar = document.getElementById('optionsBar');
       optionsBar.innerHTML = '';
@@ -312,23 +289,18 @@ comments: true
         optionsBar.appendChild(btn);
       });
     }
-
-
     // Progress tracking
     let correctCount = 0;
     let currentLevel = 1; // 1, 2, 3
-
     function updateProgressBar() {
       const pct = Math.min(100, Math.round((correctCount/15)*100));
       document.getElementById('progressBar').style.width = pct + '%';
       document.getElementById('progressText').textContent = `${correctCount} / 15`;
     }
-
     function resetProgress() {
       correctCount = 0;
       updateProgressBar();
     }
-
     function checkAnswer(selected) {
       const result = document.getElementById('resultMessage');
       const correctLanguage = currentSnippet.lang;
@@ -349,7 +321,6 @@ comments: true
       }
       updateStatsDisplay();
     }
-
     function showLevelComplete() {
       document.getElementById('gameContainer').style.display = 'none';
       document.getElementById('levelCompleteScreen').style.display = 'flex';
@@ -372,19 +343,16 @@ comments: true
       document.getElementById('levelCompleteTitle').textContent = title;
       document.getElementById('levelCompleteMsg').innerHTML = msg;
     }
-
     document.getElementById('nextBtn').onclick = showSnippet;
   // advancedMode: when true remove explicit language-word hints from displayed snippets
   let advancedMode = false;
   let levelThreeMode = false;
   const level2Btn = document.getElementById('level2Btn');
   const level3Btn = document.getElementById('level3Btn');
-
     function sanitizeForAdvanced(code) {
       // remove occurrences of explicit language names to make identification harder
       return code.replace(/\b(JavaScript|Javascript|Python|HTML|CSS|Markdown)\b/gi, '').trim();
     }
-
     function showSnippetAdvanced() {
       currentSnippet = getRandomSnippet();
       let displayCode = currentSnippet.code;
@@ -395,12 +363,10 @@ comments: true
       document.getElementById('nextBtn').classList.remove('show');
       renderOptions();
     }
-
     function showSnippet() {
       // keep backward compatible: prefer advanced-aware function
       showSnippetAdvanced();
     }
-
     level2Btn.addEventListener('click', () => {
       // toggle Level Two advanced mode; if Level Three is active, ignore Level Two toggles
       if (levelThreeMode) {
@@ -415,7 +381,6 @@ comments: true
       // immediately show a fresh snippet in the selected mode
       showSnippet();
     });
-
     level3Btn.addEventListener('click', () => {
       // Level Three takes precedence: it switches to a harder snippet pool
       levelThreeMode = !levelThreeMode;
@@ -429,7 +394,6 @@ comments: true
       level3Btn.textContent = levelThreeMode ? 'Level Three (on)' : 'Level Three';
       showSnippet();
     });
-
     // Only show the start screen on load
     window.onload = function() {
       document.getElementById('startScreen').style.display = 'flex';
@@ -437,8 +401,8 @@ comments: true
       document.getElementById('levelCompleteScreen').style.display = 'none';
       currentLevel = 1;
       resetProgress();
+      updateStatsDisplay(); // Ensure stats are rendered at least once
     };
-
     // Start button logic: hide start, show game, start game
     document.getElementById('startBtn').onclick = function() {
       document.getElementById('startScreen').style.display = 'none';
@@ -446,9 +410,9 @@ comments: true
       document.getElementById('levelCompleteScreen').style.display = 'none';
       currentLevel = 1;
       resetProgress();
+      updateStatsDisplay(); // Ensure stats are rendered when game starts
       showSnippet();
     };
-
     // Next level button logic
     document.getElementById('nextLevelBtn').onclick = function() {
       document.getElementById('levelCompleteScreen').style.display = 'none';
@@ -473,16 +437,13 @@ comments: true
       }
       showSnippet();
     };
-
     let currentQuestion = 0;
     let score = 0;
-
     // Track correct/incorrect counts per language
     const languageStats = {};
     languages.forEach(lang => {
       languageStats[lang] = { correct: 0, incorrect: 0 };
     });
-
     function updateStatsDisplay() {
       let statsHtml = '<div id="language-stats" style="margin-bottom:1em;">';
       statsHtml += '<h3>Language Stats</h3>';
@@ -495,6 +456,18 @@ comments: true
       document.getElementById('stats-container').innerHTML = statsHtml;
     }
 
+    // Toggle stats button logic
+    const statsContainer = document.getElementById('stats-container');
+    const toggleStatsBtn = document.getElementById('toggleStatsBtn');
+    toggleStatsBtn.onclick = function() {
+      if (statsContainer.style.display === 'none' || statsContainer.style.display === '') {
+        statsContainer.style.display = 'block';
+        toggleStatsBtn.textContent = 'Hide Stats';
+      } else {
+        statsContainer.style.display = 'none';
+        toggleStatsBtn.textContent = 'Show Stats';
+      }
+    };
     function showQuestion() {
         updateStatsDisplay();
         currentSnippet = getRandomSnippet();
@@ -503,7 +476,6 @@ comments: true
         document.getElementById('nextBtn').classList.remove('show');
         renderOptions();
     }
-
     // (removed duplicate checkAnswer)
   </script>
 </body>
