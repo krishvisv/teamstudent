@@ -13,6 +13,22 @@ As a team, we recently stepped into the role of **Learning Experience Designers*
 
 At first, this might sound like a small detail, but knowing how to tell these languages apart is one of the most valuable early steps in programming. It’s like learning to recognize different alphabets before you start reading fluently. Each language has its own structure, purpose, and “look,” and being able to distinguish them helps beginners build confidence and avoid confusion when starting to code.
 
+### How we used LxD in our Game
+One of the most rewarding parts of this project was seeing how our **Learning Experience Design (LxD)** skills worked hand-in-hand with our **coding and game-building (Hacks)** skills.  
+
+From the LxD perspective, we focused on:  
+- Making the game **beginner-friendly** with clear instructions and progressive difficulty.  
+- Adding features like a **progress bar** and **menus** to guide learners step by step.  
+- Designing challenges that help learners **recognize coding languages** without overwhelming them.  
+
+From the coding side, we:  
+- Built multiple **difficulty levels** that change the way answer choices appear.  
+- Implemented a **progress bar** that tracks advancement every 15 correct answers.  
+- Created a **scoreboard** system to keep players motivated.  
+- Developed **menus** to structure the start and end of gameplay smoothly.  
+
+By blending design and technical skills, our team turned a simple coding quiz into a **thoughtful learning experience**. The design choices kept learners engaged, while the technical coding brought those ideas to life. This balance is what made the project both effective and fun.  
+
 ---
 ## Peer Review Feedback: 9/18/25
 
