@@ -265,24 +265,117 @@ comments: true
     let currentSnippet = null;
 
     const levelThreeSnippets = [
-      { code: "fetch('/api/data').then(res => res.json()).then(d => console.log(d));", lang: 'Javascript' },
-      { code: "const [a,b] = arr; const result = a.map(x => x*2).filter(Boolean);", lang: 'Javascript' },
-      { code: "let nums = [1,2,3]; let doubled = nums.reduce((a,b)=>a.concat(b*2),[]);", lang: 'Javascript' },
-      { code: "for (let i=0;i<10;i++){if(i%2===0)console.log(i)}", lang: 'Javascript' },
-      { code: "name, score\nWHERE score > 100\nORDER BY score DESC;", lang: 'Python' },
-      { code: "a,b=0,1\nfor _ in range(n):\n    a,b=b,a+b\nreturn a", lang: 'Python' },
-      { code: "s == s[::-1]", lang: 'Python' },
-      { code: "with open('file.txt') as f:\n    data = f.read()", lang: 'Python' },
-      { code: "<section><article><h2>Title</h2><p>Content here</p></article></section>", lang: 'HTML' },
-      { code: "<form><input type='text' /><button>Go</button></form>", lang: 'HTML' },
-      { code: "<ul>\n  <li>One</li>\n  <li>Two</li>\n</ul>", lang: 'HTML' },
-      { code: "@media (min-width: 600px) { .col { display: grid; grid-template-columns: 1fr 2fr; } }", lang: 'CSS' },
-      { code: ".container { display: flex; flex-wrap: wrap; }", lang: 'CSS' },
-      { code: "#main { padding: 2em; border: 1px solid #ccc; }", lang: 'CSS' },
-      { code: "- [x] Task done\n- [ ] Task todo\n\nSome **notes** here.", lang: 'Markdown' },
-      { code: "1. First\n2. Second\n3. Third", lang: 'Markdown' },
-      { code: "> Blockquote example\n> More text", lang: 'Markdown' },
-      { code: "def foo():\n    pass", lang: 'Markdown' }
+      {
+        code: "fetch('/api/data').then(res => res.json()).then(d => console.log(d));",
+        lang: 'Javascript',
+        explanationCorrect: "Uses the browser Fetch API and promise chaining with .then — a JavaScript web-request pattern.",
+        explanationWrong: "Not Python/HTML/CSS/Markdown: those languages use different APIs or markup; this uses JS promises and fetch()."
+      },
+      {
+        code: "const [a,b] = arr; const result = a.map(x => x*2).filter(Boolean);",
+        lang: 'Javascript',
+        explanationCorrect: "Array destructuring plus chained array methods (map and filter) are idiomatic JavaScript.",
+        explanationWrong: "Not Python/CSS/HTML/Markdown: the square-bracket destructuring and .map/.filter methods are JavaScript-specific array APIs."
+      },
+      {
+        code: "let nums = [1,2,3]; let doubled = nums.reduce((a,b)=>a.concat(b*2),[]);",
+        lang: 'Javascript',
+        explanationCorrect: "Use of Array.reduce and array concat with arrow functions is characteristic of JavaScript.",
+        explanationWrong: "Not Python: Python uses list comprehensions or the built-in sum/map functions rather than reduce+concat syntax like this."
+      },
+      {
+        code: "for (let i=0;i<10;i++){if(i%2===0)console.log(i)}",
+        lang: 'Javascript',
+        explanationCorrect: "The C-style for loop, strict equality (===) and console.log are JavaScript syntax/idioms.",
+        explanationWrong: "Not Python: Python for-loops use 'for i in range(...)' and use print() instead of console.log()."
+      },
+      {
+        code: "results = [r for r in rows if r['score'] > 100]\nresults.sort(key=lambda x: x['score'], reverse=True)",
+        lang: 'Python',
+        explanationCorrect: "List comprehension and sort with a key lambda and dictionary indexing are idiomatic Python data-processing code.
+",
+        explanationWrong: "Not SQL/JS/HTML/CSS: this uses Python list comprehensions, not SQL keywords or JavaScript array methods."
+      },
+      {
+        code: "a,b=0,1\nfor _ in range(n):\n    a,b=b,a+b\nreturn a",
+        lang: 'Python',
+        explanationCorrect: "Tuple assignment for swapping and 'range' with underscore placeholder are common Python patterns (Fibonacci example).",
+        explanationWrong: "Not JavaScript/HTML/CSS/Markdown: JS uses different assignment/scope rules and lacks Python's tuple-unpacking syntax."
+      },
+      {
+        code: "s == s[::-1]",
+        lang: 'Python',
+        explanationCorrect: "Slice notation with [::-1] to reverse sequences is a Python-specific concise idiom for palindrome checks.",
+        explanationWrong: "Not JavaScript/CSS/HTML/Markdown: JS would use split/reverse/join or loops; the [::-1] slice is unique to Python."
+      },
+      {
+        code: "with open('file.txt') as f:\n    data = f.read()",
+        lang: 'Python',
+        explanationCorrect: "The 'with' context manager for files is Python-specific and ensures automatic cleanup (file close).",
+        explanationWrong: "Not JS/HTML/CSS/Markdown: JavaScript uses different APIs (fs.readFile or fetch in browsers), HTML/CSS are markup/styles."
+      },
+      {
+        code: "<section><article><h2>Title</h2><p>Content here</p></article></section>",
+        lang: 'HTML',
+        explanationCorrect: "Semantic tags like <section> and <article> with nested headings/paragraphs are HTML structure, not code logic.",
+        explanationWrong: "Not JS/Python/CSS/Markdown: those languages don't use angle-bracket semantic tags to structure content."
+      },
+      {
+        code: "<form><input type='text' /><button>Go</button></form>",
+        lang: 'HTML',
+        explanationCorrect: "Form and input elements are HTML markup for user input; attributes like type='text' are HTML-specific.",
+        explanationWrong: "Not Python/JS/CSS/Markdown: this is markup for browsers, not a scripting or stylesheet snippet."
+      },
+      {
+        code: "<ul>\n  <li>One</li>\n  <li>Two</li>\n</ul>",
+        lang: 'HTML',
+        explanationCorrect: "Unordered list (<ul>) with list items (<li>) is standard HTML list markup.",
+        explanationWrong: "Not Markdown/JS/Python/CSS: Markdown may have similar-looking lists, but angle-bracket tags indicate raw HTML."
+      },
+      {
+        code: "@media (min-width: 600px) { .col { display: grid; grid-template-columns: 1fr 2fr; } }",
+        lang: 'CSS',
+        explanationCorrect: "CSS media queries and grid properties are stylesheet constructs for responsive layouts.",
+        explanationWrong: "Not HTML/JS/Python/Markdown: those languages don't use @media or grid-template-columns syntax."
+      },
+      {
+        code: ".container { display: flex; flex-wrap: wrap; }",
+        lang: 'CSS',
+        explanationCorrect: "Flexbox properties (display:flex; flex-wrap) are CSS layout rules.",
+        explanationWrong: "Not HTML/JS/Python/Markdown: this is CSS styling syntax, not markup or script."
+      },
+      {
+        code: "#main { padding: 2em; border: 1px solid #ccc; }",
+        lang: 'CSS',
+        explanationCorrect: "ID selector '#main' with padding and border declarations is classic CSS.",
+        explanationWrong: "Not HTML/JS/Python/Markdown: the curly-brace property syntax identifies CSS stylesheets."
+      },
+      {
+        code: "- [x] Task done\n- [ ] Task todo\n\nSome **notes** here.",
+        lang: 'Markdown',
+        explanationCorrect: "Task list syntax with - [x] and Markdown bold (**) are Markdown formatting features.",
+        explanationWrong: "Not HTML/CSS/JS/Python: this is lightweight markup for documents, not code or styles."
+      },
+      {
+        code: "1. First\n2. Second\n3. Third",
+        lang: 'Markdown',
+        explanationCorrect: "Numbered list formatting (lines starting with '1.', '2.') is Markdown list syntax.
+",
+        explanationWrong: "Not Python/JS/HTML/CSS: plain numbered lines in this form are a document list, not code."
+      },
+      {
+        code: "> Blockquote example\n> More text",
+        lang: 'Markdown',
+        explanationCorrect: "Lines starting with '>' denote blockquotes in Markdown.",
+        explanationWrong: "Not HTML/JS/Python/CSS: the '>' convention is specific to Markdown text formatting."
+      },
+      {
+        code: "def foo():\n    pass",
+        lang: 'Python',
+        explanationCorrect: "Function definition 'def' and indentation with 'pass' are Python syntax.
+",
+        explanationWrong: "Not Markdown/JS/HTML/CSS: this is executable Python code (keyword 'def'), not markdown formatting."
+      }
     ];
 
     // mode-aware random snippet selector: prefers levelThree if enabled
@@ -332,9 +425,13 @@ comments: true
     function checkAnswer(selected) {
       const result = document.getElementById('resultMessage');
       const correctLanguage = currentSnippet.lang;
+      // fetch explanations if present (level 3 entries include them)
+      const explanationCorrect = currentSnippet && currentSnippet.explanationCorrect ? currentSnippet.explanationCorrect : '';
+      const explanationWrong = currentSnippet && currentSnippet.explanationWrong ? currentSnippet.explanationWrong : '';
       if (selected === correctLanguage) {
-        result.textContent = 'Correct!';
-        result.className = 'result-message correct';
+        // Show why the correct answer is right
+        result.innerHTML = '<span class="correct">Correct!</span>' + (explanationCorrect ? '<br><small style="color:#2e8b57; display:block; margin-top:6px;">Why: ' + explanationCorrect + '</small>' : '');
+        result.className = 'result-message';
         document.getElementById('nextBtn').classList.add('show');
         correctCount++;
         updateProgressBar();
@@ -343,8 +440,14 @@ comments: true
           setTimeout(showLevelComplete, 500);
         }
       } else {
-        result.textContent = 'Try again!';
-        result.className = 'result-message incorrect';
+        // Show why the chosen wrong answer is incorrect and what the correct answer is
+        let wrongExplanation = explanationWrong ? explanationWrong : '';
+        let correctExplanationSnippet = explanationCorrect ? explanationCorrect : '';
+        let html = '<span class="incorrect">Try again!</span>';
+        if (wrongExplanation) html += '<br><small style="color:#c0392b; display:block; margin-top:6px;">Why that is incorrect: ' + wrongExplanation + '</small>';
+        html += '<br><small style="color:#2e8b57; display:block; margin-top:6px;">Answer: ' + correctLanguage + (correctExplanationSnippet ? ' — ' + correctExplanationSnippet : '') + '</small>';
+        result.innerHTML = html;
+        result.className = 'result-message';
         languageStats[selected].incorrect++;
       }
       updateStatsDisplay();
