@@ -4,7 +4,7 @@ layout: post
 title: LxD Lesson on Coding Languages
 permalink: /LxD_Lesson
 comments: true
-description: This blog shares how our team became Learning Experience Designers by creating a beginner-friendly coding game.
+description: This blog shares how our team became Learning Experience Designers by creating a beginner-friendly coding game.    
 ---
 
 ## How We’ve Become Learning Experience Designers  
