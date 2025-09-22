@@ -336,71 +336,6 @@ comments: true
         lang: 'Python',
         explanation: 'This Python code checks if x is positive and prints a message accordingly. It uses the `if` and `else` keywords with a colon `:` to define conditional blocks. Indentation controls scope instead of braces. The `print()` function outputs whether `x` is positive or not, showing Python’s clean, readable style.'
       }
-        ,
-        // Ten additional beginner snippets (Level 1 additions)
-        {
-          code: `const greeting = `Hello`\nconsole.log(greeting);`,
-          lang: 'Javascript',
-          explanation: 'Declares a constant string and logs it to the console. Uses `const` and `console.log()`, which are common in JavaScript.'
-        },
-        {
-          code: `<button>Click me</button>`,
-          lang: 'HTML',
-          explanation: 'Simple HTML button element which creates a clickable button in a web page.'
-        },
-        {
-          code: `# Heading\nSome text here.`,
-          lang: 'Markdown',
-          explanation: 'A Markdown heading using `#` followed by plain text; easy, readable formatting for documents.'
-        },
-        {
-          code: `p { margin: 0; padding: 0; }`,
-          lang: 'CSS',
-          explanation: 'CSS rule that resets margin and padding for paragraph elements. Uses selector and declaration block syntax.'
-        },
-        {
-          code: `x = 5\nprint(x * 2)`,
-          lang: 'Python',
-          explanation: 'Assigns a value to a variable and prints the doubled value using Python syntax.'
-        },
-        {
-          code: `- Item A\n- Item B`,
-          lang: 'Markdown',
-          explanation: 'An unordered list in Markdown using dashes to denote list items.'
-        },
-        {
-          code: `img { max-width: 100%; height: auto; }`,
-          lang: 'CSS',
-          explanation: 'CSS rule that makes images responsive by limiting their width and preserving aspect ratio.'
-        },
-        {
-          code: `<input type=\"checkbox\" />`,
-          lang: 'HTML',
-          explanation: 'An HTML input of type checkbox; used for boolean user input in forms.'
-        },
-        {
-          code: `for i in [1,2,3]:\n    print(i)`,
-          lang: 'Python',
-          explanation: 'A simple Python for-loop iterating over a list and printing each element.'
-        },
-        {
-          code: `let sum = a + b;`,
-          lang: 'Javascript',
-          explanation: 'A JavaScript statement that adds two variables and stores the result in `sum`.'
-        }
-    ];
-    // Intermediate pool for Level 2 (10 added snippets)
-    const levelTwoSnippets = [
-      { code: `fetch('/users').then(r=>r.json())`, lang: 'Javascript', explanation: 'Uses fetch and promises to load JSON data in JavaScript.' },
-      { code: `array = [1,2,3]\nfor i in array:\n    print(i)`, lang: 'Python', explanation: 'Python iterates over a list using a simple for-loop.' },
-      { code: `header { display:flex; justify-content:space-between; }`, lang: 'CSS', explanation: 'CSS flex layout used to spread header items apart.' },
-      { code: `<table><tr><td>Cell</td></tr></table>`, lang: 'HTML', explanation: 'HTML table markup with a single cell.' },
-      { code: `> Quote\n\nSome explanation`, lang: 'Markdown', explanation: 'A Markdown blockquote followed by a paragraph.' },
-      { code: `const nums = [1,2,3]; nums.map(n => n*n);`, lang: 'Javascript', explanation: 'JavaScript array mapping with an arrow function to square numbers.' },
-      { code: `with open('f') as f:\n    lines = f.readlines()`, lang: 'Python', explanation: 'Python context manager that reads all lines from a file.' },
-      { code: `.btn { background: #008; color:#fff; padding:8px; }`, lang: 'CSS', explanation: 'CSS rule styling buttons with background, color, and padding.' },
-      { code: `<section id="main">Content</section>`, lang: 'HTML', explanation: 'HTML section element with an id attribute to identify it.' },
-      { code: `1) First\n2) Second`, lang: 'Markdown', explanation: 'An ordered list in Markdown using numbers.' }
     ];
     const languages = ['CSS', 'Javascript', 'Python', 'Markdown', 'HTML'];
     let currentSnippet = null;
@@ -424,27 +359,11 @@ comments: true
       { code: "1. First\n2. Second\n3. Third", lang: 'Markdown', explanation: 'This is Markdown because it uses numbers followed by a period for an ordered list. Each line represents a list item, which is rendered as a numbered list in Markdown.' },
       { code: "> Blockquote example\n> More text", lang: 'Markdown', explanation: 'This is Markdown because it uses ">" to create blockquotes. Each line starting with ">" is treated as a quoted section. Markdown interprets these symbols for formatting.' },
       { code: "def foo():\n    pass", lang: 'Markdown', explanation: 'This is a Python function labeled as Markdown for the game. It uses "def" to define the function, a colon to start the block, and indentation with "pass" as a placeholder. The syntax is clearly Python, but it is included as a tricky Markdown example.' }
-      ,
-      // Ten additional advanced snippets for Level 3
-      { code: "async function load() { const r = await fetch('/x'); return r.json(); }", lang: 'Javascript', explanation: 'JavaScript using async/await and fetch — async functions and await are modern JS features for asynchronous code.' },
-      { code: "class Person:\n    def __init__(self, name):\n        self.name = name", lang: 'Python', explanation: 'Python class definition with an initializer; uses `self` to store instance state and indentation-based blocks.' },
-      { code: "const memo = {}; function fib(n){ if(n<2) return n; if(memo[n]) return memo[n]; memo[n]=fib(n-1)+fib(n-2); return memo[n]; }", lang: 'Javascript', explanation: 'JavaScript function implementing memoized Fibonacci using an object cache and recursion.' },
-      { code: "@media screen and (max-width:600px){.nav{display:none}}", lang: 'CSS', explanation: 'CSS media query that hides navigation on small screens; uses @media rules and conditional styling.' },
-      { code: "SELECT name FROM users WHERE active = 1;", lang: 'Markdown', explanation: 'A SQL-like snippet provided as a tricky Markdown example — its syntax resembles SQL queries used inside strings or docs.' },
-      { code: "<svg width=\"24\" height=\"24\"><circle cx=\"12\" cy=\"12\" r=\"10\"/></svg>", lang: 'HTML', explanation: 'Inline SVG markup inside HTML defining a simple circle; SVG uses XML-like tags.' },
-      { code: "(defn square [x] (* x x))", lang: 'Markdown', explanation: 'Clojure-style snippet included as an advanced trick question; uses parentheses and prefix notation.' },
-      { code: "let set = new Set([1,2,3]); set.add(4);", lang: 'Javascript', explanation: 'JavaScript using Set — an ES6 collection type for unique values and methods like add().' },
-      { code: "with open('/tmp/log') as fh:\n    for line in fh:\n        if 'ERROR' in line:\n            print(line)", lang: 'Python', explanation: 'Python file reading with context manager and iteration; filters lines containing the string ERROR.' },
-      { code: "body::before { content: ''; display:block; height:50vh; }", lang: 'CSS', explanation: 'CSS pseudo-element example using ::before to insert generated content and control layout.' }
     ];
     // mode-aware random snippet selector: prefers levelThree if enabled
     function getRandomSnippet() {
       if (typeof levelThreeMode !== 'undefined' && levelThreeMode) {
         return levelThreeSnippets[Math.floor(Math.random() * levelThreeSnippets.length)];
-      }
-      // If advancedMode is on (Level 2), and levelTwoSnippets exists, prefer that pool
-      if (typeof advancedMode !== 'undefined' && advancedMode && typeof levelTwoSnippets !== 'undefined') {
-        return levelTwoSnippets[Math.floor(Math.random() * levelTwoSnippets.length)];
       }
       return codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
     }
@@ -470,13 +389,10 @@ comments: true
     // Progress tracking
     let correctCount = 0;
     let currentLevel = 1; // 1, 2, 3
-    // Track attempts for the current snippet (used for Level 3 behavior)
-    let currentAttempts = 0;
     function updateProgressBar() {
-      const target = getCurrentTarget();
-      const pct = Math.min(100, Math.round((correctCount/target)*100));
+      const pct = Math.min(100, Math.round((correctCount/15)*100));
       document.getElementById('progressBar').style.width = pct + '%';
-      document.getElementById('progressText').textContent = `${correctCount} / ${target}`;
+      document.getElementById('progressText').textContent = `${correctCount} / 15`;
     }
     function resetProgress() {
       correctCount = 0;
@@ -485,8 +401,6 @@ comments: true
     function checkAnswer(selected) {
       const result = document.getElementById('resultMessage');
       const correctLanguage = currentSnippet.lang;
-      // increment attempt count for this snippet
-      currentAttempts++;
       if (selected === correctLanguage) {
         result.textContent = 'Correct!';
         result.className = 'result-message correct';
@@ -494,27 +408,15 @@ comments: true
         correctCount++;
         updateProgressBar();
         languageStats[correctLanguage].correct++;
-        // Level 3: show a tailored correct explanation if provided; fall back to generic explanation
-        if (levelThreeMode) {
-          const text = currentSnippet.explanationCorrect || currentSnippet.explanation || 'Correct! Good job.';
-          showExplanation(text);
-        } else {
-          showExplanation(currentSnippet.explanation);
-        }
-        if (correctCount >= getCurrentTarget()) {
+        showExplanation(currentSnippet.explanation);
+        if (correctCount >= 15) {
           setTimeout(showLevelComplete, 500);
         }
       } else {
         result.textContent = 'Try again!';
         result.className = 'result-message incorrect';
         languageStats[selected].incorrect++;
-        // Level 3: show a tailored wrong explanation if available (to coach the player), otherwise hide
-        if (levelThreeMode) {
-          const wrongText = currentSnippet.explanationWrong || currentSnippet.explanation || '';
-          if (wrongText) showExplanation(wrongText);
-        } else {
-          hideExplanation();
-        }
+        hideExplanation();
       }
       updateStatsDisplay();
     }
@@ -536,11 +438,11 @@ comments: true
       let btn = document.getElementById('nextLevelBtn');
       if (currentLevel === 1) {
         title = 'Level 1 Complete!';
-        msg = `You answered ${getCurrentTarget()} questions correctly!<br>Click below to go to Level 2.`;
+        msg = 'You answered 15 questions correctly!<br>Click below to go to Level 2.';
         btn.textContent = 'Go to Level 2';
       } else if (currentLevel === 2) {
         title = 'Level 2 Complete!';
-        msg = `Great job!<br>Click below to go to Level 3.`;
+        msg = 'Great job!<br>Click below to go to Level 3.';
         btn.textContent = 'Go to Level 3';
       } else {
         title = 'Level 3 Complete!';
@@ -549,14 +451,6 @@ comments: true
       }
       document.getElementById('levelCompleteTitle').textContent = title;
       document.getElementById('levelCompleteMsg').innerHTML = msg;
-    }
-
-    // Return the number of correct answers required to complete the current level
-    function getCurrentTarget() {
-      if (currentLevel === 1) return codeSnippets.length; // dynamic level 1 target
-      if (currentLevel === 2) return (typeof levelTwoSnippets !== 'undefined') ? levelTwoSnippets.length : 15;
-      if (currentLevel === 3) return levelThreeSnippets.length;
-      return 15;
     }
     document.getElementById('nextBtn').onclick = showSnippet;
   // advancedMode: when true remove explicit language-word hints from displayed snippets
@@ -569,8 +463,6 @@ comments: true
       return code.replace(/\b(JavaScript|Javascript|Python|HTML|CSS|Markdown)\b/gi, '').trim();
     }
     function showSnippetAdvanced() {
-      // reset attempt counter for each new snippet
-      currentAttempts = 0;
       currentSnippet = getRandomSnippet();
       let displayCode = currentSnippet.code;
       // Level Three snippets are selected from a different pool; always sanitize if advancedMode or levelThreeMode
