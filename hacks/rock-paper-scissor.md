@@ -12,6 +12,9 @@ permalink: /rock-paper-scissor/
   <div id="gameContainer">
     <canvas id='gameCanvas' style="display:none"></canvas>
   </div>
+  <div id="scoreBox" style="text-align:center; margin-top:18px; font-size:1.2em; color:#fff; background:purple; border-radius:8px; padding:10px 0; max-width:300px; margin-left:auto; margin-right:auto;">
+    Wins: <span id="winCount">0</span> | Losses: <span id="lossCount">0</span>
+  </div>
 </div>
 
 <script type="module">
@@ -273,6 +276,13 @@ permalink: /rock-paper-scissor/
   render(); // kick off the engine once
 
   // --- game logic + console entry point ---
+  let winCount = 0;
+  let lossCount = 0;
+  function updateScoreBox() {
+    document.getElementById('winCount').textContent = winCount;
+    document.getElementById('lossCount').textContent = lossCount;
+  }
+
   window.playRPS = function(playerChoice){
     const choices = ["rock","paper","scissors"];
     if(!choices.includes(playerChoice)){
@@ -294,10 +304,13 @@ permalink: /rock-paper-scissor/
     ){
       resultText = "You Win!";
       winner = playerChoice; loser = computerChoice;
+      winCount++;
     } else {
       resultText = "You Lose!";
       winner = computerChoice; loser = playerChoice;
+      lossCount++;
     }
+    updateScoreBox();
 
     document.getElementById("resultBox").innerHTML = `
       <p>You chose: <b>${playerChoice.toUpperCase()}</b></p>
